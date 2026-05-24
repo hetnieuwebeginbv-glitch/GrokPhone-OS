@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Stay4SGuardian" parent="android:Theme.Material.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@color/guardian_black</item>
+        <item name="android:statusBarColor">@color/guardian_black</item>
+        <item name="android:navigationBarColor">@color/guardian_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <style name="Theme.Stay4SGuardian.Splash" parent="Theme.Stay4SGuardian">
+        <item name="android:windowSplashScreenBackground">@color/guardian_black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_guardian_splash</item>
+    </style>
+</resources>

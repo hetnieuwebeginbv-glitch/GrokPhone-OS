@@ -1,0 +1,40 @@
+# Android build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Build directories
+build/
+*/build/
+.gradle/
+*/.gradle/
+
+# Local configuration
+local.properties
+*.keystore
+keystore/
+!keystore/.gitkeep
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Secrets — NOOIT committen!
+.env
+secrets.properties
+google-services.json
+release.keystore
+
+# Gradle wrapper JAR (groot binair bestand)
+gradle/wrapper/gradle-wrapper.jar
+*/gradle/wrapper/gradle-wrapper.jar
+
+# Generated files
+*/app/src/main/java/**/BuildConfig.java

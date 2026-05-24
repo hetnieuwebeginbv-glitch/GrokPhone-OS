@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ManusLauncher" parent="android:Theme.Material.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">#080810</item>
+        <item name="android:statusBarColor">#080810</item>
+        <item name="android:navigationBarColor">#080810</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.ManusLauncher.Drawer" parent="Theme.ManusLauncher">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+</resources>

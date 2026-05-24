@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manus Launcher</string>
+    <string name="app_description">Ai Manus Phone — Stay4Safe Ai</string>
+    <string name="search_hint">Zoek apps…</string>
+    <string name="guardian_status_ok">Alle 4 lagen actief — Geen bedreigingen</string>
+    <string name="guardian_status_alert">Guardian: Let op!</string>
+</resources>
