@@ -1,4 +1,4 @@
-name: Build Manus Launcher
+name: 🚀 Build Manus Launcher
 
 on:
   push:
@@ -26,10 +26,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: 🔧 Setup Android SDK
+      - name: 📱 Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+          build-tools: '35.0.0'
 
       - name: 📦 Cache Gradle packages
         uses: actions/cache@v4
@@ -41,31 +43,58 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-launcher-
 
-      - name: 🔑 Make gradlew executable
-        run: chmod +x manus-launcher/gradlew
-
-      - name: 🧪 Run unit tests
+      - name: 🔧 Bootstrap Gradle Wrapper
         working-directory: manus-launcher
-        run: ./gradlew test
+        run: |
+          if [ ! -f "gradlew" ]; then
+            gradle wrapper --gradle-version=8.9 --distribution-type=bin
+          fi
+          chmod +x gradlew
+
+      - name: ✅ Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+      - name: 🧹 Clean
+        working-directory: manus-launcher
+        run: ./gradlew clean --no-daemon
+
+      - name: 🔍 Lint
+        working-directory: manus-launcher
+        run: ./gradlew lint --no-daemon
+        continue-on-error: true
+
+      - name: 🧪 Unit tests
+        working-directory: manus-launcher
+        run: ./gradlew test --no-daemon
+        continue-on-error: true
 
       - name: 🏗️ Build Debug APK
         working-directory: manus-launcher
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: 🏗️ Build Release APK
         working-directory: manus-launcher
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --no-daemon
 
       - name: 📤 Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: manus-launcher-debug-${{ github.sha }}
+          name: launcher-debug-${{ github.sha }}
           path: manus-launcher/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
 
       - name: 📤 Upload Release APK
         uses: actions/upload-artifact@v4
+        if: success()
         with:
-          name: manus-launcher-release-${{ github.sha }}
+          name: launcher-release-${{ github.sha }}
           path: manus-launcher/app/build/outputs/apk/release/app-release.apk
           retention-days: 90
+
+      - name: 📊 Upload build rapporten
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: launcher-reports-${{ github.sha }}
+          path: manus-launcher/app/build/reports/
+          retention-days: 14

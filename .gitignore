@@ -38,3 +38,12 @@ gradle/wrapper/gradle-wrapper.jar
 
 # Generated files
 */app/src/main/java/**/BuildConfig.java
+
+# Gradle build cache (keep wrapper)
+.gradle/
+guardian-app/.gradle/
+manus-launcher/.gradle/
+glyph-guardian/.gradle/
+guardian-app/build/
+manus-launcher/build/
+glyph-guardian/build/

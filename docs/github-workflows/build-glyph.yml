@@ -1,4 +1,4 @@
-name: Build Glyph Guardian
+name: 💡 Build Glyph Guardian
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Build Glyph Guardian
+    name: 💡 Build Glyph Guardian
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +24,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: 🔧 Setup Android SDK
+      - name: 📱 Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+          build-tools: '35.0.0'
 
       - name: 📦 Cache Gradle
         uses: actions/cache@v4
@@ -36,21 +38,57 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-glyph-${{ hashFiles('glyph-guardian/**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-glyph-
 
-      - name: 🔑 Make gradlew executable
-        run: chmod +x glyph-guardian/gradlew
+      - name: 🔧 Bootstrap Gradle Wrapper
+        working-directory: glyph-guardian
+        run: |
+          if [ ! -f "gradlew" ]; then
+            gradle wrapper --gradle-version=8.9 --distribution-type=bin
+          fi
+          chmod +x gradlew
+
+      - name: ✅ Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+      - name: 📦 Stub Nothing Glyph SDK voor CI
+        run: |
+          mkdir -p glyph-guardian/libs
+          if [ ! -f "glyph-guardian/libs/GlyphSDK.aar" ]; then
+            mkdir -p /tmp/glyph-stub/res
+            echo '<?xml version="1.0" encoding="utf-8"?><manifest package="com.nothing.ketchum"/>' > /tmp/glyph-stub/AndroidManifest.xml
+            cd /tmp/glyph-stub && zip -r GlyphSDK.aar AndroidManifest.xml res/
+            cp /tmp/glyph-stub/GlyphSDK.aar glyph-guardian/libs/GlyphSDK.aar
+          fi
+
+      - name: 🧹 Clean
+        working-directory: glyph-guardian
+        run: ./gradlew clean --no-daemon
 
       - name: 🏗️ Build Debug APK
         working-directory: glyph-guardian
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --no-daemon
+        env:
+          NOTHING_API_KEY: ${{ secrets.NOTHING_API_KEY || 'test' }}
 
       - name: 🏗️ Build Release APK
         working-directory: glyph-guardian
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --no-daemon
+        env:
+          NOTHING_API_KEY: ${{ secrets.NOTHING_API_KEY || 'test' }}
 
-      - name: 📤 Upload APK
+      - name: 📤 Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: glyph-guardian-release-${{ github.sha }}
+          name: glyph-debug-${{ github.sha }}
+          path: glyph-guardian/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: 📤 Upload Release APK
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: glyph-release-${{ github.sha }}
           path: glyph-guardian/app/build/outputs/apk/release/app-release.apk
           retention-days: 90
