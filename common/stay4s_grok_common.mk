@@ -1,0 +1,1 @@
+The single source of truth common makefile that every future device tree must inherit.
