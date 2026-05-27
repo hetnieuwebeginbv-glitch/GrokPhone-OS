@@ -1,0 +1,1 @@
+Technical architecture for how the Grok Launcher integrates with the Parallel Grok Brain and Guardian.

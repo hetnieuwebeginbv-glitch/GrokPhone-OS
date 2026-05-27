@@ -1,0 +1,1 @@
+Data model for proactive surfaces/cards from Guardian/Brain.

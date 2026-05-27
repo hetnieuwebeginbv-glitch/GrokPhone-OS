@@ -1,0 +1,1 @@
+Core interface contract between launcher and AI brain.
