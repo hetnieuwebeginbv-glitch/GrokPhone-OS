@@ -1,0 +1,1 @@
+Master context file optimized for pasting into the user's Grok AI 'grokphone' project.
