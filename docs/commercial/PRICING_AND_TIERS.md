@@ -1,0 +1,1 @@
+Detailed pricing tiers and product structure recommendations.

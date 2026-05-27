@@ -1,0 +1,1 @@
+Full commercial strategy document (see local version for complete text)
