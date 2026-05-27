@@ -1,0 +1,1 @@
+Core Partnership principles.
