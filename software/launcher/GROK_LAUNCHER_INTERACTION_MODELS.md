@@ -1,0 +1,1 @@
+How users interact with the full Parallel Grok AI from the launcher (voice, text, proactive cards, Genesis specifics).
