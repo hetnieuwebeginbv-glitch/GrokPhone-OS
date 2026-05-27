@@ -1,4 +1,4 @@
-The full Parallel Grok AI Brain
+The Full Parallel Grok AI Brain
 
 This is the complete implementation of the Parallel Grok Agent for the Stay4S Grok Edition.
 
@@ -17,6 +17,10 @@ This is the complete implementation of the Parallel Grok Agent for the Stay4S Gr
 
 ## Status
 This is a production-grade skeleton ready for deeper local SLM integration and real Accessibility/Meshmatic tool implementations.
+
+For a much deeper technical analysis of the current implementation, strengths, weaknesses, and concrete next steps, see:
+
+**`docs/agent/GROK_AI_IMPLEMENTATION_DEEP_DIVE.md`**
 
 Place this under `packages/apps/Grok/` in the Android tree for the Stay4S Grok Edition ROM.
 
