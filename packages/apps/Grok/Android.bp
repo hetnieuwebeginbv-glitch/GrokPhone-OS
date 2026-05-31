@@ -1,0 +1,10 @@
+﻿android_app {
+    name: "Grok",
+    srcs: ["src/**/*.java", "src/**/*.kt"],
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+    certificate: "platform",
+    privileged: true,
+    product_specific: true,
+    sdk_version: "current",
+}

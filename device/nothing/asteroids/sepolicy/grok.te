@@ -1,0 +1,30 @@
+﻿type grok_app, domain;
+app_domain(grok_app)
+net_domain(grok_app)
+
+# Telecom & Radio
+allow grok_app telephony_service:service_manager find;
+allow grok_app radio_service:service_manager find;
+allow grok_app phone_state_listener:service_manager find;
+allow grok_app qti_radio_service:service_manager find;
+
+# System services
+allow grok_app system_server:service_manager find;
+allow grok_app activity_service:service_manager find;
+allow grok_app package_service:service_manager find;
+allow grok_app power_service:service_manager find;
+
+# Foreground agent process
+allow grok_app grok_app:process { fork sigchld sigkill sigstop };
+allow grok_app grok_app:fd use;
+
+# Boot receivers
+allow grok_app init:process { sigchld sigkill sigstop };
+
+# Quick Settings + Notification
+allow grok_app status_bar_service:service_manager find;
+allow grok_app notification_service:service_manager find;
+
+# Network & logging
+allow grok_app netdomain:netlink_route_socket { bind create read write };
+allow grok_app logd:unix_stream_socket connectto;

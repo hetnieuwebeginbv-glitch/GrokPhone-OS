@@ -1,0 +1,9 @@
+﻿out/
+.ccache/
+*.img
+*.zip
+*.apk
+.idea/
+.vscode/
+Thumbs.db
+.git_home_backup_*

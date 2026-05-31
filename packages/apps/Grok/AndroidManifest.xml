@@ -1,0 +1,31 @@
+﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xai.grok">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.BIND_TELECOM_CONNECTION_SERVICE" />
+
+    <application
+        android:name=".GrokApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:process=":agent">
+
+        <service
+            android:name=".agent.GrokAgentService"
+            android:exported="true"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE" />
+
+        <activity
+            android:name=".GrokMainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
