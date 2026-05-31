@@ -1,0 +1,5 @@
+# Grok Edition property contexts
+
+ro.stay4s.grok.*    u:object_r:grok_prop:s0
+ro.grok.*           u:object_r:grok_prop:s0
+persist.stay4s.grok.* u:object_r:grok_prop:s0

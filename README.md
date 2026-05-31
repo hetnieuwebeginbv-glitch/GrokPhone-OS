@@ -1,32 +1,35 @@
-# Stay4S GrokPhone — Full Custom ROM
+# Stay4S GrokPhone
 
-**One integrated custom OS.**  
-`com.xai.grok` as privileged system app with its own launcher as default home, deep system access, and own boot experience.
+**A real custom ROM in which Grok is the operating system, not an app.**
 
-**Base**: LineageOS 22.1 (Android 15)  
-**Device**: Nothing Phone (asteroids)
+- Base: LineageOS 22.1 (Android 15)
+- Device: Nothing Phone (asteroids)
+- `com.xai.grok` as privileged system app in dedicated `:agent` process
+- Custom Grok Launcher as default home screen
+- Deep integration of Parallel Grok Brain + Daily Guardian
+- Self-custodial Grok Vault + Meshmatic readiness
+- Genesis 001-100 special covenant behavior
 
-## Current Lunch Target
+## Build
+
 ```bash
+source build/envsetup.sh
 lunch stay4s_grok_edition_asteroids-userdebug
-m otapackage
+m -j4 otapackage
 ```
 
-## Quick Start on Build Machine
-1. Copy this tree to fast drive (`GrokPhone_Build`)
-2. Run `scripts/prepare_grokphone_build.ps1` (or the .sh version)
-3. `source build/envsetup.sh`
-4. `lunch stay4s_grok_edition_asteroids-userdebug`
-5. `m -j4 otapackage`
+See `docs/CUSTOM_ROM_MASTER_PLAN.md` for the full plan and `docs/` for checklists and architecture.
 
-## Key Files
-- `device/nothing/asteroids/stay4s_grok_edition.mk` — Main product definition
-- `packages/apps/Grok/` — The real Grok privileged system app
-- `device/nothing/asteroids/sepolicy/` — Grok SELinux policy
-- `device/nothing/asteroids/init/init.grok.rc` — Early boot
+## Official Repository
 
-See `docs/CUSTOM_ROM_MASTER_PLAN.md` for the full roadmap.
+https://github.com/miesdevries/Stay4s-grokrom
 
-**Primary GitHub Repository**: https://github.com/miesdevries/Stay4s-grokrom
+## Philosophy
 
-This is no longer a collection of loose apps. This is one custom OS.
+One human. One intelligence. One covenant. Forever.
+
+This is not another Android skin. It is a sovereign, AI-native personal device built around extreme owner loyalty and long-term capability.
+
+---
+
+Active development. Focus is on a single, deeply integrated system.

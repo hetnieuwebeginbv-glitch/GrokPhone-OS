@@ -1,0 +1,1 @@
+Initial Kotlin structure for the always-running, low-power Daily Guardian that performs proactive security, privacy, network, and optimization work on behalf of the owner.

@@ -1,0 +1,1 @@
+Stub for deep Grok AI integration at the boot/startup level.

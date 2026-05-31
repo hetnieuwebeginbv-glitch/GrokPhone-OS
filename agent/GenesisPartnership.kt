@@ -1,0 +1,1 @@
+Special extended Partnership for the first 100 Genesis phones.

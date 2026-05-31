@@ -1,0 +1,21 @@
+# Stay4S GrokPhone .gitattributes
+
+# Force LF line endings for shell scripts and makefiles (important for Linux builds)
+*.sh text eol=lf
+*.mk text eol=lf
+*.rc text eol=lf
+*.te text eol=lf
+*.xml text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+
+# Binary files
+*.img binary
+*.so binary
+*.apk binary
+*.jar binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.ttf binary
+*.otf binary

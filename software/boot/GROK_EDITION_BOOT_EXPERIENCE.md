@@ -1,0 +1,1 @@
+Detailed vision for the custom boot / startup experience with deep Grok AI integration.

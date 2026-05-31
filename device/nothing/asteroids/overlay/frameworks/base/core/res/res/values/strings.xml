@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Aggressive removal / rebranding of stock Android and Lineage strings -->
+    <string name="app_name">Grok</string>
+    <string name="android_upgrading">GrokPhone is starting...</string>
+    <string name="android_start_title">GrokPhone</string>
+    <string name="android_system_label">Grok System</string>
+
+    <!-- Remove common "Android" references in UI -->
+    <string name="android">Grok</string>
+    <string name="android_debuggable">GrokPhone (debug)</string>
+</resources>

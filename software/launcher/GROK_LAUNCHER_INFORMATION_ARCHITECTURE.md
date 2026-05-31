@@ -1,0 +1,1 @@
+Detailed information architecture for the Grok Launcher (calm canvas, intelligent surfaces, Genesis special touches).
