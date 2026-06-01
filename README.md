@@ -22,7 +22,7 @@ See `docs/CUSTOM_ROM_MASTER_PLAN.md` for the full plan and `docs/` for checklist
 
 ## Official Repository
 
-https://github.com/miesdevries/Stay4s-grokrom
+https://github.com/hetnieuwebeginbv-glitch/Stay4S-Grok
 
 ## Philosophy
 
@@ -33,6 +33,3 @@ This is not another Android skin. It is a sovereign, AI-native personal device b
 ---
 
 Active development. Focus is on a single, deeply integrated system.
-=======
-# Stay4S-Grok
-the Stay4S-Grok
