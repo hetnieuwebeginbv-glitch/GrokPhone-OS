@@ -9,10 +9,10 @@ class GlyphGuardianApp : Application() {
         super.onCreate()
         NotificationChannel(
             "glyph_guardian",
-            "Glyph Guardian",
+            getString(R.string.channel_glyph_name),
             NotificationManager.IMPORTANCE_LOW
         ).also {
-            it.description = "Stay4S Glyph LED status indicator"
+            it.description = getString(R.string.channel_glyph_desc)
             getSystemService(NotificationManager::class.java).createNotificationChannel(it)
         }
     }

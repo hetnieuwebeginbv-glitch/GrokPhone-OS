@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.ManusLauncher" parent="android:Theme.Material.NoTitleBar.Fullscreen">
+    <style name="Theme.ManusLauncher" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:windowBackground">#080810</item>
         <item name="android:statusBarColor">#080810</item>
         <item name="android:navigationBarColor">#080810</item>

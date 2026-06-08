@@ -12,13 +12,36 @@
 
 Dit project transformeert een **Nothing Phone 3a** volledig naar een **Ai Manus Phone** via software. Geen hardware-aanpassingen nodig — alles draait via Android apps, een custom launcher en Glyph-herprogrammering.
 
+## Manus OS richting
+
+Dit project is de basis voor **Manus OS**. De juiste volgorde is:
+
+1. **Manus OS Layer** — APK-laag op Nothing Phone 3a met Launcher, Guardian, Glyph, Ai Chat, Messenger, Store, Payments en Manus AI Boss.
+2. **Manus Managed OS** — device-owner/MDM provisioning, eigen updatekanaal, managed installs, backend, accounts en fleet/family beheer.
+3. **Manus OS ROM** — pas later een echte Android-fork/custom ROM met eigen systeemapps, signing keys en OTA server.
+
+Zie [docs/product/MANUS_OS_ROADMAP.md](docs/product/MANUS_OS_ROADMAP.md) voor het volledige stappenplan.
+
+Het volledige masterproduct staat in [docs/product/MASTER_AI_MANUS_PHONE.md](docs/product/MASTER_AI_MANUS_PHONE.md): AI Browser, Search, Messenger, Pay, Mail, Drive, Photos, Contacts, Dialer, SMS, Notes, Vault, Family, Fleet, Agent Store en Manus Cloud.
+
+De huidige technische grenzen zijn omgezet naar een bouwroadmap in [docs/product/MANUS_AI_LIMITS_TO_ROADMAP.md](docs/product/MANUS_AI_LIMITS_TO_ROADMAP.md).
+
+De actuele repo-, build- en installatiestatus staat in [docs/STATUS_REPORT.md](docs/STATUS_REPORT.md).
+
 ### Wat wordt er geïnstalleerd?
 
 | Component | Beschrijving | APK |
 |---|---|---|
 | **Stay4S Guardian** | AI-beschermingsapp met scam-detectie, valdetectie, Fastbutton | `guardian-app-release.apk` |
 | **Manus Launcher** | Custom home screen — vervangt de Nothing Launcher | `manus-launcher-release.apk` |
-| **Glyph Guardian** | Herprogrammeert de Glyph LEDs als Guardian AI status-indicator | `glyph-guardian-release.apk` |
+| **Manus AI Glyph** | AI/Glyph statuslaag voor Guardian, Browser, Messenger, Pay en agents | `glyph-guardian-release.apk` |
+| **Manus Suite** | Setup, Store, Ai Chat, Browser, Messenger, Pay en device-owner basis | `manus-suite-release.apk` |
+
+### Manus AI Boss companion architectuur
+
+Naast de telefoonapps kan een **Manus AI Boss** companion orchestrator draaien als controller/API-laag. Deze laag delegeert werk aan specialistische assistenten voor Guardian, Launcher, Glyph en Build/Install taken, en verzamelt status terug voor dashboards of companion-clients.
+
+Dit is bedoeld als begeleidende besturing rond lokale Android-services, ADB-installatie en expliciete API-integraties. Het belooft geen zelfstandige cloud-autonomie: acties blijven gekoppeld aan gebruikerstoestemming, lokale permissies en controleerbare uitvoer.
 
 ---
 
@@ -93,6 +116,9 @@ adb shell am start -n ai.stay4safe.glyph/.service.GlyphGuardianService
 
 ### Build commando's
 ```bash
+# Alles bouwen en naar releases/ kopieren
+./scripts/build-release.sh
+
 # Guardian App bouwen
 cd guardian-app && ./gradlew assembleRelease
 
@@ -101,6 +127,9 @@ cd manus-launcher && ./gradlew assembleRelease
 
 # Glyph Guardian bouwen
 cd glyph-guardian && ./gradlew assembleRelease
+
+# Manus Suite bouwen
+cd manus-suite && gradle :app:assembleRelease
 ```
 
 ---
@@ -144,9 +173,13 @@ M-Ai-Phone/
 │       ├── service/                ← Glyph background service
 │       └── patterns/               ← Guardian LED patronen
 ├── docs/                           ← Documentatie
+│   ├── README.md                   ← Documentatie-index
 │   ├── INSTALL.md                  ← Installatie handleiding
 │   ├── BUILD.md                    ← Build instructies
-│   └── ARCHITECTURE.md             ← Technische architectuur
+│   ├── ARCHITECTURE.md             ← Technische architectuur
+│   ├── product/                    ← Product en Manus OS scope
+│   ├── ops/                        ← Signing, provisioning, release
+│   └── strategy/                   ← Commercie en OS-hunter strategie
 ├── scripts/
 │   ├── install.sh                  ← Automatisch installatiescript
 │   └── uninstall.sh                ← Verwijder script
@@ -168,4 +201,4 @@ Apache 2.0 — Stay4Safe Ai © 2026
 
 - **Website**: [aimanusphone-nkuvn9sn.manus.space](https://aimanusphone-nkuvn9sn.manus.space)
 - **Stay4Safe Ai**: Stay4Safe Ai Telecom
-- **Rapportage**: Zie `docs/rapportage.md`
+- **Rapportage**: Zie [docs/README.md](docs/README.md)

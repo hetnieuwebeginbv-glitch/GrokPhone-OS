@@ -8,7 +8,8 @@
     <application
         android:name=".GlyphGuardianApp"
         android:allowBackup="false"
-        android:label="Glyph Guardian"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:theme="@style/Theme.GlyphGuardian">
 
         <meta-data
@@ -16,12 +17,12 @@
             android:value="${nothingApiKey}" />
 
         <service
-            android:name="ai.stay4safe.guardian.glyph.GlyphGuardianService"
+            android:name=".GlyphGuardianService"
             android:exported="false"
             android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Glyph LED Guardian status indicator" />
+                android:value="Manus AI Glyph status indicator" />
         </service>
 
         <receiver

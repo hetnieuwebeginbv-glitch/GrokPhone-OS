@@ -1,6 +1,5 @@
 package ai.stay4safe.glyph
 
-import ai.stay4safe.guardian.glyph.GlyphGuardianService
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent

@@ -21,6 +21,7 @@ android {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
         }
         debug { isDebuggable = true }
     }
@@ -35,7 +36,5 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-    // Nothing Glyph SDK — lokaal AAR bestand
-    implementation(files("../libs/GlyphSDK.aar"))
     testImplementation("junit:junit:4.13.2")
 }

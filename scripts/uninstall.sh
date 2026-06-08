@@ -27,13 +27,23 @@ adb -s "$DEVICE" uninstall ai.stay4safe.guardian 2>/dev/null && \
     echo -e "${GREEN}✓ Guardian AI verwijderd${NC}" || \
     echo -e "${RED}✗ Guardian AI niet gevonden${NC}"
 
+adb -s "$DEVICE" uninstall ai.stay4safe.guardian.debug 2>/dev/null && \
+    echo -e "${GREEN}✓ Guardian AI debug verwijderd${NC}" || true
+
 adb -s "$DEVICE" uninstall ai.stay4safe.launcher 2>/dev/null && \
     echo -e "${GREEN}✓ Manus Launcher verwijderd${NC}" || \
     echo -e "${RED}✗ Manus Launcher niet gevonden${NC}"
 
+adb -s "$DEVICE" uninstall ai.stay4safe.launcher.debug 2>/dev/null && \
+    echo -e "${GREEN}✓ Manus Launcher debug verwijderd${NC}" || true
+
 adb -s "$DEVICE" uninstall ai.stay4safe.glyph 2>/dev/null && \
     echo -e "${GREEN}✓ Glyph Guardian verwijderd${NC}" || \
     echo -e "${RED}✗ Glyph Guardian niet gevonden${NC}"
+
+adb -s "$DEVICE" uninstall ai.stay4safe.manus 2>/dev/null && \
+    echo -e "${GREEN}✓ Manus Suite verwijderd${NC}" || \
+    echo -e "${RED}✗ Manus Suite niet gevonden${NC}"
 
 # Glyph debug mode uitzetten
 adb -s "$DEVICE" shell settings put global nt_glyph_interface_debug_enable 0

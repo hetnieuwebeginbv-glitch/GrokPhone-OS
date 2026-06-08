@@ -2,7 +2,11 @@
 
 ## Overzicht
 
-De Ai Manus Phone bestaat uit drie lagen die samenwerken op een standaard Nothing Phone 3a:
+De Ai Manus Phone is fase 1 van Manus OS. De eerste versie is een **Manus OS Layer** bovenop Nothing OS op een standaard Nothing Phone 3a. Latere fases kunnen doorgroeien naar **Manus Managed OS** en daarna eventueel een echte **Manus OS ROM**.
+
+Zie [product/MANUS_OS_ROADMAP.md](product/MANUS_OS_ROADMAP.md) voor het volledige stappenplan.
+
+De huidige software bestaat uit drie lagen die samenwerken op een standaard Nothing Phone 3a:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -21,11 +25,29 @@ De Ai Manus Phone bestaat uit drie lagen die samenwerken op een standaard Nothin
 
 ## Component Beschrijvingen
 
+### Manus OS Layer
+- **Type**: APK/device-owner-ready softwarelaag bovenop Nothing OS
+- **Doel**: De telefoon laten voelen als een eigen Ai Manus Phone zonder root of custom ROM
+- **Huidige modules**: Manus Launcher, Stay4S Guardian, Glyph Guardian
+- **Volgende modules**: Setup/Settings, Store/Updater, Ai Chat, Messenger, Payments
+- **Grenzen**: Geen volledige vervanging van kernel, modem, OTA, system Settings of privileged installer zonder OEM/ROM-track
+
 ### Manus Launcher
 - **Type**: Android Launcher (HOME activity)
 - **Taal**: Kotlin + Jetpack Compose
 - **Design**: Cybernetic Noir (zwart + teal glassmorphism)
 - **Functies**: Custom home screen, app drawer, Guardian widget, klok
+
+### Manus AI Boss Companion Orchestrator
+- **Type**: Companion controller/API-laag naast de telefoonapps
+- **Rol**: Coördineert taken tussen de telefooncomponenten en specialistische assistenten
+- **Scope**: Geeft opdrachten, verzamelt status en bewaakt beleidsregels; voert geen autonome cloud-acties uit buiten expliciete API-integraties of gebruikersopdrachten
+- **Delegatie**:
+  - Guardian Assistant: veiligheid, privacy-signalen, risico-uitleg
+  - Launcher Assistant: home screen intenties, widgets, snelle acties
+  - Glyph Assistant: LED-status, waarschuwingen, feedbackpatronen
+  - Build/Install Assistant: build-artifacts, ADB-installatie, versiecontrole
+- **Interfaces**: Lokale intents/services op Android, ADB/install tooling tijdens setup, en optionele controller-API voor dashboard- of companion-clients
 
 ### Stay4S Guardian AI
 - **Type**: Foreground Service (altijd actief)
@@ -78,6 +100,23 @@ CallAnalysis (ScamRisk: NONE/LOW/MEDIUM/HIGH)
        ├── NONE/LOW → Normaal doorbellen
        ├── MEDIUM   → Waarschuwing tonen + Glyph amber
        └── HIGH     → Oproep blokkeren + Glyph rood + Notificatie
+```
+
+## Companion Orchestration Flow
+
+```
+Gebruiker / Companion API
+       │
+       ▼
+Manus AI Boss Orchestrator
+       │
+       ├── Guardian Assistant      → safety/privacy/security advies
+       ├── Launcher Assistant      → UI intents en snelle acties
+       ├── Glyph Assistant         → statuspatronen en feedback
+       └── Build/Install Assistant → APK build, release en ADB installatie
+       │
+       ▼
+Telefoonapps voeren lokaal uit met gebruikerstoestemming en auditbare status
 ```
 
 ## Build Pipeline

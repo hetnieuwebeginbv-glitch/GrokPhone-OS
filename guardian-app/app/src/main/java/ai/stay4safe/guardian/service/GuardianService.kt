@@ -64,7 +64,6 @@ class GuardianService : Service(), SensorEventListener {
     }
 
     @Inject lateinit var scamCallService: ScamCallService
-    @Inject lateinit var fallDetectionService: FallDetectionService
     @Inject lateinit var privacyMonitor: PrivacyMonitorService
     @Inject lateinit var auditLog: AuditLogService
 

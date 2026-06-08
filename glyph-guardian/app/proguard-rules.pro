@@ -1,0 +1,1 @@
+-keep class ai.stay4safe.glyph.** { *; }

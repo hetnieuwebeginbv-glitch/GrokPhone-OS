@@ -4,7 +4,6 @@ import ai.stay4safe.guardian.service.AuditLogService
 import ai.stay4safe.guardian.service.PrivacyMonitorService
 import ai.stay4safe.guardian.service.ScamCallService
 import android.content.Context
-import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

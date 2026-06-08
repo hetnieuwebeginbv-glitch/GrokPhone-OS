@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Stay4S Guardian</string>
     <string name="app_description">Ai Manus Phone — Stay4Safe Ai</string>
+    <string name="accessibility_service_label">Stay4S Guardian scam-detectie</string>
 
     <!-- Notificatie kanalen -->
     <string name="channel_guardian_name">Guardian AI</string>
