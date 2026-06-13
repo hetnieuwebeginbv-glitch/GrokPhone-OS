@@ -46,6 +46,9 @@ Module: `manus-suite`
 Bevat de basis-apps voor de Manus-laag:
 
 - Setup
+- AI Boss Admin
+- AI medewerker agents
+- Admin policies
 - Store
 - AI Chat
 - Browser
@@ -54,6 +57,8 @@ Bevat de basis-apps voor de Manus-laag:
 - Device Admin receiver
 
 Dit is de eerste echte Manus-suite APK voor de telefoonlaag. Backend-koppelingen voor accounts, store, messenger, payments, cloud en agents moeten nog als serverdiensten worden gebouwd.
+
+De AI Boss Admin Room staat in de app als beheerdersruimte. Deze legt de hoofdagent, medewerker-agents, parallelle taakverdeling, approval gates en auditlog-model vast. De huidige versie is de native telefoonbasis; echte cloud/orchestration uitvoering komt in de backendfase via `manus-boss-api`.
 
 ## Scripts
 

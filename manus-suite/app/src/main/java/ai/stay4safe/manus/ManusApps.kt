@@ -27,6 +27,7 @@ class MainActivity : ManusHubActivity(
     subtitle = "Setup, Store, Chat, Browser, Messenger en Pay voor de Ai Manus Phone.",
     actions = listOf(
         ManusAction("Setup", SetupActivity::class.java),
+        ManusAction("AI Boss Admin", BossAdminActivity::class.java),
         ManusAction("Store", StoreActivity::class.java),
         ManusAction("Ai Chat", ChatActivity::class.java),
         ManusAction("Browser", BrowserActivity::class.java),
@@ -70,6 +71,53 @@ class ChatActivity : ManusHubActivity(
         "Manus AI Boss blijft de orchestrator achter de schermen.",
         "Acties met impact vragen bevestiging of managed policy.",
         "Cloud gateway en on-device classificatie komen in de backendfase."
+    )
+)
+
+class BossAdminActivity : ManusHubActivity(
+    title = "Manus AI Boss",
+    subtitle = "Eigen beheerdersruimte voor de hoofdagent die alle AI-medewerker agents aanstuurt.",
+    lines = listOf(
+        "Rol: jij bent eigenaar/admin. Manus AI Boss coordineert, maar voert beheeracties alleen uit binnen jouw policies.",
+        "Command queue: nieuwe opdrachten worden eerst geclassificeerd op risico, doel en benodigde permissies.",
+        "Agent routing: taken gaan naar de specialist die het beste past bij de opdracht.",
+        "Approval gate: installaties, betalingen, accountacties, device-owner acties en datadeling vragen expliciete goedkeuring.",
+        "Audit log: elke agentactie moet later terug te lezen zijn met tijd, agent, opdracht, resultaat en bron.",
+        "Parallel mode: meerdere agents mogen tegelijk onderzoek, voorbereiding en controles doen; de Boss neemt de eindbeslissing."
+    ),
+    actions = listOf(
+        ManusAction("Medewerker agents", BossAgentsActivity::class.java),
+        ManusAction("Admin policies", BossPolicyActivity::class.java)
+    )
+)
+
+class BossAgentsActivity : ManusHubActivity(
+    title = "AI Medewerker Agents",
+    subtitle = "Specialistische agents onder de Manus AI Boss.",
+    lines = listOf(
+        "Guardian Agent: veiligheid, scams, noodsituaties, privacy en risicosignalen.",
+        "Device Agent: instellingen, permissies, batterij, launcher, device-owner en ADB-provisioning.",
+        "Browser Agent: webcontrole, phishing, samenvattingen, bronnen en veilige betaalmodus.",
+        "Messenger Agent: berichten, groepen, business inbox, vertaling en samenvatting.",
+        "Payments Agent: abonnementen, entitlements, facturen, refunds en fraudeflags.",
+        "Store Agent: catalogus, updates, release rings, rollback en revoke.",
+        "Fleet/Admin Agent: family, beheer, policies, toestellen en auditrapporten.",
+        "Build/Install Agent: APK-builds, signingchecks, installatiestatus en release readiness.",
+        "Growth Agent: zoekt nieuwe productmiddelen, commerciele kansen en ecosysteem-uitbreidingen."
+    )
+)
+
+class BossPolicyActivity : ManusHubActivity(
+    title = "AI Boss Policies",
+    subtitle = "Beheersregels voor wat agents wel en niet zelfstandig mogen doen.",
+    lines = listOf(
+        "Autopilot laag 1: lezen, samenvatten, controleren en voorstellen zonder extra toestemming.",
+        "Autopilot laag 2: lage-risico device acties alleen na jouw vooraf ingestelde policy.",
+        "Approval vereist: betalen, installeren, verwijderen, accounts wijzigen, data delen of device-owner acties.",
+        "No silent install: gewone Android toestellen gebruiken user-confirmed installs.",
+        "Managed mode: device-owner toestellen mogen later beheerde installs en policies uitvoeren.",
+        "Privacy: persoonlijke data blijft minimaal, doelgebonden en zichtbaar in auditlog.",
+        "Fallback: bij twijfel stopt de agent en vraagt Manus AI Boss jouw bevestiging."
     )
 )
 

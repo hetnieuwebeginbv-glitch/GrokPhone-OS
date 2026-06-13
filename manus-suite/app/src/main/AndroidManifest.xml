@@ -23,6 +23,9 @@
         </activity>
 
         <activity android:name=".SetupActivity" android:exported="true" />
+        <activity android:name=".BossAdminActivity" android:exported="true" />
+        <activity android:name=".BossAgentsActivity" android:exported="true" />
+        <activity android:name=".BossPolicyActivity" android:exported="true" />
         <activity android:name=".StoreActivity" android:exported="true" />
         <activity android:name=".ChatActivity" android:exported="true" />
         <activity android:name=".BrowserActivity" android:exported="true" />

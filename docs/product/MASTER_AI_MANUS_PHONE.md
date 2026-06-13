@@ -151,6 +151,12 @@ Module: `manus-chat`
 
 De parallelle orchestrator die specialistische agents aanstuurt.
 
+- Eigen beheerdersruimte voor de eigenaar/admin
+- Een hoofdagent die taken beoordeelt, verdeelt en terugrapporteert
+- Command queue voor opdrachten vanuit chat, launcher, browser, store en beheer
+- Approval gate voor acties met risico of kosten
+- Audit log voor elke agentactie
+- Parallel mode voor gelijktijdig onderzoek, voorbereiding en controles
 - Guardian Agent
 - Device Agent
 - Browser Agent
@@ -163,7 +169,39 @@ De parallelle orchestrator die specialistische agents aanstuurt.
 
 Belangrijk: Ai Chat praat met de gebruiker. Manus AI Boss coordineert acties en agents. Dit blijven gescheiden rollen.
 
+App basis: `manus-suite` met `BossAdminActivity`, `BossAgentsActivity` en `BossPolicyActivity`
+
 Backend: `manus-boss-api`
+
+#### AI Boss command model
+
+1. De gebruiker of eigenaar geeft een opdracht.
+2. Manus AI Boss classificeert doel, risico, benodigde permissies en commerciele waarde.
+3. De Boss splitst de opdracht in subtaken voor specialistische agents.
+4. Agents voeren onderzoek, voorbereiding of controles parallel uit.
+5. De Boss verzamelt resultaten, dedupliceert conflicten en maakt een besluitvoorstel.
+6. Bij installaties, betalingen, accountwijzigingen, datadeling of device-owner acties vraagt de Boss expliciete goedkeuring.
+7. Na uitvoering schrijft de Boss een auditregel met agent, opdracht, bron, actie en resultaat.
+
+#### AI medewerker agents
+
+- **Guardian Agent**: veiligheid, scams, noodsituaties, privacy en risicosignalen.
+- **Device Agent**: instellingen, permissies, batterij, launcher, device-owner en ADB-provisioning.
+- **Browser Agent**: webcontrole, phishing, samenvattingen, bronnen en veilige betaalmodus.
+- **Messenger Agent**: berichten, groepen, business inbox, vertaling en samenvatting.
+- **Payments Agent**: abonnementen, entitlements, facturen, refunds en fraudeflags.
+- **Store Agent**: catalogus, updates, release rings, rollback en revoke.
+- **Fleet/Admin Agent**: family, beheer, policies, toestellen en auditrapporten.
+- **Build/Install Agent**: APK-builds, signingchecks, installatiestatus en release readiness.
+- **Growth Agent**: nieuwe productmiddelen, commerciele kansen en ecosysteem-uitbreidingen.
+
+#### Beheersregels
+
+- Autopilot laag 1: lezen, samenvatten, controleren en voorstellen.
+- Autopilot laag 2: lage-risico device acties alleen na vooraf ingestelde policy.
+- Approval verplicht: betalen, installeren, verwijderen, accountwijzigingen, datadeling en device-owner acties.
+- Gewone Android toestellen: geen stille installaties.
+- Managed toestellen: device-owner policies en managed installs zodra provisioning actief is.
 
 ### 10. Manus Messenger
 
