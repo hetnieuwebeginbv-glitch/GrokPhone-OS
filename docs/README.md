@@ -6,6 +6,7 @@
 - [Build](BUILD.md)
 - [Architecture](ARCHITECTURE.md)
 - [Status Report](STATUS_REPORT.md)
+- [Project Pause Handoff](PROJECT_PAUSE_HANDOFF.md)
 
 ## Product
 
