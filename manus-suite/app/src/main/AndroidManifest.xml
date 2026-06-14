@@ -23,9 +23,15 @@
         </activity>
 
         <activity android:name=".SetupActivity" android:exported="true" />
+        <activity android:name=".AdminRoomActivity" android:exported="true" />
         <activity android:name=".BossAdminActivity" android:exported="true" />
+        <activity android:name=".BossDashboardActivity" android:exported="true" />
+        <activity android:name=".BossCommandQueueActivity" android:exported="true" />
         <activity android:name=".BossAgentsActivity" android:exported="true" />
         <activity android:name=".BossPolicyActivity" android:exported="true" />
+        <activity android:name=".BossAuditActivity" android:exported="true" />
+        <activity android:name=".DeviceFlashActivity" android:exported="true" />
+        <activity android:name=".BackendConsoleActivity" android:exported="true" />
         <activity android:name=".StoreActivity" android:exported="true" />
         <activity android:name=".ChatActivity" android:exported="true" />
         <activity android:name=".BrowserActivity" android:exported="true" />

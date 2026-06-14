@@ -45,10 +45,16 @@ Module: `manus-suite`
 
 Bevat de basis-apps voor de Manus-laag:
 
+- Admin Room
 - Setup
 - AI Boss Admin
+- AI Boss Dashboard
+- Command Queue
 - AI medewerker agents
 - Admin policies
+- Audit Log
+- Device & Flash Readiness
+- Backend Console
 - Store
 - AI Chat
 - Browser
@@ -60,11 +66,14 @@ Dit is de eerste echte Manus-suite APK voor de telefoonlaag. Backend-koppelingen
 
 De AI Boss Admin Room staat in de app als beheerdersruimte. Deze legt de hoofdagent, medewerker-agents, parallelle taakverdeling, approval gates en auditlog-model vast. De huidige versie is de native telefoonbasis; echte cloud/orchestration uitvoering komt in de backendfase via `manus-boss-api`.
 
+De Admin Room is uitgebreid met dashboard, command queue, audit log, device/flash readiness en backend console. Daarmee is de telefoon-app voorbereid op beheer vanuit een eigenaar/admin rol.
+
 ## Scripts
 
 - `scripts/build-release.sh`: bouwt alle release-APK's en kopieert ze naar `releases/`.
 - `scripts/install.sh`: installeert Guardian, Launcher, Manus AI Glyph en Manus Suite via ADB.
 - `scripts/provision-device-owner.sh`: zet Manus Suite als device owner op een vers of gereset toestel.
+- `scripts/flash-readiness.sh`: maakt een non-destructive readiness report voor APK-installatie, device-owner en latere ROM/flash-track.
 - `scripts/uninstall.sh`: verwijdert de Manus-apps via ADB.
 
 Alle scripts zijn gecontroleerd met `bash -n`.
@@ -93,6 +102,7 @@ Wat nu nog niet volledig kan zonder extra externe rechten, hardware of diensten:
 - Geen echte Nothing Glyph LED-aansturing zonder officiele Nothing Glyph SDK/AAR of ondersteunde API.
 - Geen productie-keystore in de repo; release signing moet via veilige environment variables of secrets.
 - Geen live telefoontest uitgevoerd zolang `adb devices` geen verbonden toestel toont.
+- Geen ROM flash uitgevoerd; readiness is voorbereid, maar echte flash vereist geteste images, device tree, vendor blobs en rollbackplan.
 - Geen productiebackend voor accounts, payments, messenger, AI agents, store, updates en cloud.
 
 ## Volgende Installatiestap
@@ -107,4 +117,10 @@ Voor device-owner provisioning op een vers of gereset toestel:
 
 ```bash
 MANUS_ENABLE_DEVICE_OWNER=1 ./scripts/install.sh
+```
+
+Voor flash-readiness inventarisatie:
+
+```bash
+./scripts/flash-readiness.sh
 ```

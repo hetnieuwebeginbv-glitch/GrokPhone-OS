@@ -24,8 +24,9 @@ private const val TEAL = "#00D4B4"
 
 class MainActivity : ManusHubActivity(
     title = "Manus Suite",
-    subtitle = "Setup, Store, Chat, Browser, Messenger en Pay voor de Ai Manus Phone.",
+    subtitle = "Admin, Setup, Store, Chat, Browser, Messenger en Pay voor de Ai Manus Phone.",
     actions = listOf(
+        ManusAction("Admin Room", AdminRoomActivity::class.java),
         ManusAction("Setup", SetupActivity::class.java),
         ManusAction("AI Boss Admin", BossAdminActivity::class.java),
         ManusAction("Store", StoreActivity::class.java),
@@ -33,6 +34,28 @@ class MainActivity : ManusHubActivity(
         ManusAction("Browser", BrowserActivity::class.java),
         ManusAction("Messenger", MessengerActivity::class.java),
         ManusAction("Pay", PayActivity::class.java)
+    )
+)
+
+class AdminRoomActivity : ManusHubActivity(
+    title = "Manus Admin Room",
+    subtitle = "Beheerdersruimte voor eigenaar, AI Boss, devices, agents, policies, audit en flash readiness.",
+    lines = listOf(
+        "Owner mode: alleen de beheerder bepaalt policies, installaties, betalingen, device-owner acties en flash-trajecten.",
+        "AI Boss: hoofdagent voor taakverdeling, parallelle agents, risico-inschatting en besluitvoorstellen.",
+        "Device control: status, provisioning, permissies, installatiestatus en managed mode.",
+        "Flash readiness: voorbereiding voor ROM/fastboot trajecten zonder automatisch gevaarlijke flash-acties.",
+        "Audit: elke beheeractie krijgt later een logregel met tijd, actor, agent, actie, risico en resultaat.",
+        "Backend: deze app is de telefoonbasis; productiebeheer komt via Manus Boss API, device registry en admin console."
+    ),
+    actions = listOf(
+        ManusAction("AI Boss Dashboard", BossDashboardActivity::class.java),
+        ManusAction("Command Queue", BossCommandQueueActivity::class.java),
+        ManusAction("Medewerker agents", BossAgentsActivity::class.java),
+        ManusAction("Admin policies", BossPolicyActivity::class.java),
+        ManusAction("Audit log", BossAuditActivity::class.java),
+        ManusAction("Device & Flash", DeviceFlashActivity::class.java),
+        ManusAction("Backend console", BackendConsoleActivity::class.java)
     )
 )
 
@@ -86,8 +109,39 @@ class BossAdminActivity : ManusHubActivity(
         "Parallel mode: meerdere agents mogen tegelijk onderzoek, voorbereiding en controles doen; de Boss neemt de eindbeslissing."
     ),
     actions = listOf(
+        ManusAction("AI Boss Dashboard", BossDashboardActivity::class.java),
+        ManusAction("Command Queue", BossCommandQueueActivity::class.java),
         ManusAction("Medewerker agents", BossAgentsActivity::class.java),
-        ManusAction("Admin policies", BossPolicyActivity::class.java)
+        ManusAction("Admin policies", BossPolicyActivity::class.java),
+        ManusAction("Audit log", BossAuditActivity::class.java)
+    )
+)
+
+class BossDashboardActivity : ManusHubActivity(
+    title = "AI Boss Dashboard",
+    subtitle = "Overzicht van de hoofdagent en de operationele status.",
+    lines = listOf(
+        "Status: telefoonbasis actief in Manus Suite; backend orchestration volgt via Manus Boss API.",
+        "Primary loop: opdracht ontvangen, classificeren, agents kiezen, resultaten combineren, goedkeuring vragen, uitvoeren, loggen.",
+        "Risk lanes: info, low-risk, managed action, restricted action en blocked action.",
+        "Parallel agents: onderzoek en voorbereiding mogen naast elkaar lopen; uitvoerende acties blijven policy-gestuurd.",
+        "Escalatie: betalingen, accountwijzigingen, datadeling, installaties, device-owner en flash-acties gaan naar eigenaar/admin.",
+        "Output: de Boss levert een besluitvoorstel met bronnen, risico's, benodigde permissies en verwachte impact."
+    )
+)
+
+class BossCommandQueueActivity : ManusHubActivity(
+    title = "Command Queue",
+    subtitle = "Wachtrijmodel voor opdrachten aan de AI Boss.",
+    lines = listOf(
+        "1. Intake: opdracht uit chat, admin room, launcher, browser, store of supportkanaal.",
+        "2. Classificatie: doel, urgentie, data-impact, kosten, device-impact en benodigde rechten.",
+        "3. Routing: taak naar Guardian, Device, Browser, Messenger, Payments, Store, Fleet, Build of Growth Agent.",
+        "4. Parallel work: agents verzamelen opties, checks, status en risico's.",
+        "5. Decision pack: Boss maakt een samenvatting met voorgestelde actie.",
+        "6. Approval: admin bevestigt gevoelige acties.",
+        "7. Execution: alleen toegestane acties worden uitgevoerd.",
+        "8. Audit: resultaat en context worden opgeslagen."
     )
 )
 
@@ -104,6 +158,50 @@ class BossAgentsActivity : ManusHubActivity(
         "Fleet/Admin Agent: family, beheer, policies, toestellen en auditrapporten.",
         "Build/Install Agent: APK-builds, signingchecks, installatiestatus en release readiness.",
         "Growth Agent: zoekt nieuwe productmiddelen, commerciele kansen en ecosysteem-uitbreidingen."
+    )
+)
+
+class BossAuditActivity : ManusHubActivity(
+    title = "Audit Log",
+    subtitle = "Verplicht logmodel voor beheer en agentacties.",
+    lines = listOf(
+        "Auditvelden: timestamp, device id, actor, agent, opdracht, actie, policy, risico, resultaat en foutmelding.",
+        "Install events: APK naam, versie, signer, bron, installatiemethode en bevestiging.",
+        "Managed events: device-owner status, policywijziging, app allowlist, update ring en rollback.",
+        "Payment events: entitlement, provider, bedrag, valuta, status en refundpad; geen kaartdata in Manus logs.",
+        "Messenger events: alleen metadata die nodig is voor beheer; berichtinhoud blijft buiten audit tenzij gebruiker expliciet analyse vraagt.",
+        "Flash events: bootloaderstatus, build fingerprint, slot, image-hash, commando en herstelplan."
+    )
+)
+
+class DeviceFlashActivity : ManusHubActivity(
+    title = "Device & Flash Readiness",
+    subtitle = "Voorbereiding voor Nothing Phone 3a install, managed mode en latere ROM/flash-track.",
+    lines = listOf(
+        "Current path: APK-laag installeren via ADB en optioneel device-owner op een schoon toestel.",
+        "Managed path: Manus Suite als device owner, daarna policies, managed installs en update rings.",
+        "Flash path: alleen readiness en inventarisatie zolang er geen geteste ROM images, device tree, vendor blobs en rollbackplan zijn.",
+        "Niet automatisch flashen: geen boot/recovery/vendor/system images schrijven zonder expliciet imagepad, testtoestel en bevestiging.",
+        "Checks: ADB device, model, Android versie, build fingerprint, bootloader properties, fastboot beschikbaarheid en APK signatures.",
+        "Laptop command: `./scripts/flash-readiness.sh` maakt een lokaal readiness report."
+    ),
+    actions = listOf(
+        ManusAction("Open Android instellingen", Settings.ACTION_SETTINGS),
+        ManusAction("Open ontwikkelaarsopties", Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
+    )
+)
+
+class BackendConsoleActivity : ManusHubActivity(
+    title = "Backend Console",
+    subtitle = "Koppelpunten voor de productieversie van de Admin Room.",
+    lines = listOf(
+        "manus-boss-api: opdrachten, agent routing, decision packs en approval flow.",
+        "identity-api: eigenaar, adminrollen, sessies, device binding en recovery.",
+        "device-registry-api: toestelstatus, build, installaties, policies, rings en audit.",
+        "catalog-api: Manus Store metadata, APK hashes, releases, rollback en revoke.",
+        "entitlement-api: abonnementen, premium AI, family, fleet, invoices en refunds.",
+        "ai-gateway: modelrouter, tools, safety filters, cost limits en logging.",
+        "admin-web: desktop beheerdersruimte voor fleet, support, updates en commerciele operatie."
     )
 )
 

@@ -25,6 +25,7 @@ keystore/
 
 # Logs
 *.log
+reports/
 
 # Secrets — NOOIT committen!
 .env

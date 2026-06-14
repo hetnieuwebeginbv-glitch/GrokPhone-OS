@@ -38,11 +38,14 @@ De huidige technische grenzen en hoe we die oplossen staan in [MANUS_AI_LIMITS_T
 - Manus Messenger, Pay, Mail, Drive, Photos, Contacts, Dialer, SMS, Notes en Vault als eigen kernapps in latere MVP-stappen.
 - Setup checklist voor permissies, launcher-keuze, meldingen, accessibility, batterij-optimalisatie en noodcontacten.
 - Installatie via ADB met `scripts/install.sh`.
+- Admin Room in Manus Suite voor eigenaar/admin beheer.
+- Flash-readiness inventarisatie via `scripts/flash-readiness.sh`.
 
 ### Deliverables
 
 - Debug en release APKs voor Launcher, Guardian en Glyph Guardian.
 - Werkend installatiescript.
+- Werkend flash-readiness script zonder destructieve acties.
 - Documentatie voor build, install en productgrenzen.
 - Eerste backend ontwerp voor account, device registry, update manifest en AI gateway.
 
@@ -67,6 +70,7 @@ De huidige technische grenzen en hoe we die oplossen staan in [MANUS_AI_LIMITS_T
 - Ai Manus Messenger beta met eigen accounts en E2EE-ontwerp.
 - Ai Manus Pay voor abonnementen, entitlements, facturen en marketplace-aankopen via payment provider.
 - Admin console voor devices, updates, support, logs en incidenten.
+- Admin Room op de telefoon met AI Boss, command queue, audit, device readiness en backend console.
 
 ### Deliverables
 
@@ -183,4 +187,5 @@ Voor nu bouwen we dit eerst als softwarelaag op de Nothing Phone 3a, omdat dat s
 8. Maak backend skeleton: identity, device registry, update manifest, entitlement API.
 9. Voeg device-owner provisioning documentatie toe.
 10. Test op een echte Nothing Phone 3a via `./scripts/install.sh`.
-11. Beslis daarna of ROM feasibility onderzoek start.
+11. Draai `./scripts/flash-readiness.sh` en bewaar het report.
+12. Beslis daarna of ROM feasibility onderzoek start.

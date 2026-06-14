@@ -18,6 +18,7 @@
 ## Operations
 
 - [Device Owner Provisioning](ops/DEVICE_OWNER_PROVISIONING.md)
+- [Flash Readiness](ops/FLASH_READINESS.md)
 - [Release Signing](ops/RELEASE_SIGNING.md)
 
 ## Strategy
