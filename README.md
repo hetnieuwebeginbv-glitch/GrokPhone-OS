@@ -36,7 +36,8 @@ mka bacon -j\
 ## CI/CD
 
 - uild.yml — Nightly/build-on-push
-- elease.yml — Manuele release naar canary/beta/stable
+- 
+elease.yml — Manuele release naar canary/beta/stable
 - security-scan.yml — SELinux/AVB/security audit
 
 ## Gerelateerd
