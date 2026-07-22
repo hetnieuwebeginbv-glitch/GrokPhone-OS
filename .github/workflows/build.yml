@@ -1,0 +1,102 @@
+name: Stay4OS Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Release channel'
+        required: true
+        default: 'nightly'
+        type: choice
+        options:
+          - nightly
+          - canary
+          - beta
+          - stable
+      clean_build:
+        description: 'Clean build (make clean)'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  BUILD_DIR: /mnt/build/stay4os
+  CCACHE_DIR: /mnt/ccache
+  CCACHE_MAXSIZE: 50G
+  TARGET: lineage_asteroids
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, arm64]
+    timeout-minutes: 480
+
+    steps:
+      - name: Checkout local manifests
+        uses: actions/checkout@v4
+        with:
+          path: .repo/local_manifests
+
+      - name: Setup build environment
+        run: |
+          export USE_CCACHE=1
+          export CCACHE_DIR=${{ env.CCACHE_DIR }}
+          ccache -M ${{ env.CCACHE_MAXSIZE }}
+          ccache -z
+
+      - name: Initialize repo
+        run: |
+          cd ${{ env.BUILD_DIR }}
+          repo init -u https://github.com/LineageOS/android.git \
+            -b lineage-22.1 \
+            --git-lfs
+
+      - name: Copy local manifests
+        run: |
+          mkdir -p ${{ env.BUILD_DIR }}/.repo/local_manifests
+          cp -r .repo/local_manifests/* ${{ env.BUILD_DIR }}/.repo/local_manifests/
+
+      - name: Sync sources
+        run: |
+          cd ${{ env.BUILD_DIR }}
+          repo sync --current-branch --optimized-fetch --force-sync -j$(nproc)
+
+      - name: Clean build (if requested)
+        if: ${{ inputs.clean_build || false }}
+        run: |
+          cd ${{ env.BUILD_DIR }}
+          make clean
+
+      - name: Build
+        run: |
+          cd ${{ env.BUILD_DIR }}
+          source build/envsetup.sh
+          lunch ${TARGET}-userdebug
+          export TARGET_KERNEL_SOURCE=kernel/nothing/sm7635
+          export TARGET_KERNEL_VERSION=6.1
+          mka bacon -j$(nproc) 2>&1 | tee build.log
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stay4os-${{ github.sha }}
+          path: |
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/lineage_asteroids-ota-*.zip
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/boot.img
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/dtbo.img
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/vendor_boot.img
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/super.img
+            ${{ env.BUILD_DIR }}/build.log
+          retention-days: 14
+
+      - name: Upload ccache stats
+        run: ccache -s
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Build failed for commit ${{ github.sha }}"
+          # TODO: Send notification (Discord/Telegram/Email)

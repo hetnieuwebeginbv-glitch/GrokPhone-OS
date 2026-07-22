@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Device tree (community) -->
+  <project name="sayann70/device_nothing_asteroids"
+           path="device/nothing/asteroids"
+           remote="github"
+           revision="16" />
+
+  <!-- Vendor blobs (extract van stock ROM — private repo) -->
+  <project name="Stay4S/android_vendor_nothing_asteroids"
+           path="vendor/nothing/asteroids"
+           remote="github" />
+
+  <!-- Kernel source (NothingOSS official) -->
+  <project name="NothingOSS/android_kernel_msm-6.1_nothing_sm7635"
+           path="kernel/nothing/sm7635"
+           remote="github"
+           revision="sm7635/v/mr" />
+
+  <!-- Kernel modules -->
+  <project name="NothingOSS/android_kernel_modules_6.1_nothing_sm7635"
+           path="kernel/nothing/sm7635-modules"
+           remote="github"
+           revision="sm7635/v/mr" />
+
+  <!-- Stay4S system apps -->
+  <project name="Stay4S/android_packages_apps_AetherCore"
+           path="packages/apps/Stay4S/AetherCore"
+           remote="github" />
+
+  <project name="Stay4S/android_packages_apps_Stay4Launcher"
+           path="packages/apps/Stay4S/Launcher"
+           remote="github" />
+
+  <project name="Stay4S/android_packages_apps_Stay4Vault"
+           path="packages/apps/Stay4S/Vault"
+           remote="github" />
+
+  <!-- Nothing-specific (Paranoid Glyph, etc.) -->
+  <project name="sayann70/packages_apps_ParanoidGlyph"
+           path="packages/apps/ParanoidGlyph"
+           remote="github" />
+
+  <project name="sayann70/packages_apps_GlyphAdapter"
+           path="packages/apps/GlyphAdapter"
+           remote="github" />
+</manifest>

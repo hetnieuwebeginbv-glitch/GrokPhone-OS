@@ -1,0 +1,93 @@
+name: Stay4OS Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Release channel'
+        required: true
+        type: choice
+        options:
+          - nightly
+          - canary
+          - beta
+          - stable
+      version:
+        description: 'Version tag (e.g., 20260728)'
+        required: true
+        type: string
+
+env:
+  BUILD_DIR: /mnt/build/stay4os
+  CCACHE_DIR: /mnt/ccache
+  CLOUDFLARE_R2_BUCKET: stay4s-ota
+  TARGET: lineage_asteroids
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, arm64]
+    timeout-minutes: 480
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set version
+        run: |
+          echo "STAY4S_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+          echo "STAY4S_CHANNEL=${{ inputs.channel }}" >> $GITHUB_ENV
+
+      - name: Build ROM
+        run: |
+          cd ${{ env.BUILD_DIR }}
+          source build/envsetup.sh
+          lunch ${TARGET}-userdebug
+          export STAY4S_VERSION=${{ env.STAY4S_VERSION }}
+          export STAY4S_CHANNEL=${{ env.STAY4S_CHANNEL }}
+          mka bacon -j$(nproc) 2>&1 | tee build.log
+
+      - name: Sign artifacts (HSM)
+        run: |
+          # Signing happens on separate signing server
+          # CI uploads unsigned artifacts to signing queue
+          # This step triggers the signing server via API
+          echo "Triggering HSM signing for release ${{ inputs.version }}"
+          # TODO: Implement HSM signing trigger
+          # curl -X POST https://signing.stay4s.ai/v1/sign \
+          #   -H "Authorization: Bearer ${{ secrets.SIGNING_API_KEY }}" \
+          #   -d '{"version": "${{ inputs.version }}", "channel": "${{ inputs.channel }}"}'
+
+      - name: Upload to Cloudflare R2
+        run: |
+          # Upload OTA package to Cloudflare R2
+          OTA_ZIP=$(ls ${{ env.BUILD_DIR }}/out/target/product/asteroids/lineage_asteroids-ota-*.zip)
+          OTA_HASH=$(sha256sum $OTA_ZIP | cut -d' ' -f1)
+          OTA_SIZE=$(stat -c%s $OTA_ZIP)
+
+          # Upload to R2
+          # TODO: Configure R2 credentials as secrets
+          # curl -X PUT "https://${{ env.CLOUDFLARE_R2_BUCKET }}.r2.cloudflarestorage.com/releases/${{ inputs.channel }}/${{ inputs.version }}/lineage_asteroids-ota-${{ inputs.version }}.zip" \
+          #   -H "Authorization: Bearer ${{ secrets.R2_API_TOKEN }}" \
+          #   --data-binary @$OTA_ZIP
+
+          # Update manifest
+          # curl -X PUT "https://ota-api.stay4s.ai/v1/manifest/${{ inputs.channel }}" \
+          #   -H "Content-Type: application/json" \
+          #   -d '{
+          #     "version": "${{ inputs.version }}",
+          #     "hash": "'$OTA_HASH'",
+          #     "size": '$OTA_SIZE',
+          #     "url": "https://ota.stay4s.ai/releases/${{ inputs.channel }}/${{ inputs.version }}/lineage_asteroids-ota-${{ inputs.version }}.zip",
+          #     "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+          #   }'
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.channel }}-${{ inputs.version }}
+          name: "Stay4OS ${{ inputs.channel }} ${{ inputs.version }}"
+          body: "Stay4OS release for Nothing Phone 3a (asteroids)\nChannel: ${{ inputs.channel }}\nVersion: ${{ inputs.version }}"
+          files: |
+            ${{ env.BUILD_DIR }}/out/target/product/asteroids/lineage_asteroids-ota-*.zip
+          draft: true
+          prerelease: ${{ inputs.channel != 'stable' }}
