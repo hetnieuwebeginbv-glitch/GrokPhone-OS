@@ -1,0 +1,62 @@
+# grok_agent.te
+#
+# Stay4S Grok - Isolated SELinux Domain for GrokAgentCore
+# Privacy & Cybersecurity hardened policy
+#
+# This domain is for the persistent Grok AI agent running in :agent process.
+# Goal: strong isolation from system and other apps, while allowing
+# controlled operation under explicit user consent + Partnership verification.
+
+type grok_agent, domain;
+type grok_agent_exec, exec_type, file_type, vendor_file_type;
+
+# Transition into this domain from the Grok app
+init_daemon_domain(grok_agent)
+
+# Basic process capabilities (minimal)
+allow grok_agent self:process { fork signal };
+allow grok_agent grok_agent_exec:file { read execute open getattr };
+
+# Allow binder communication with system (controlled)
+binder_use(grok_agent)
+binder_call(grok_agent, system_server)
+binder_call(grok_agent, servicemanager)
+
+# Allow binder communication with AetherCore (for AIDL binding)
+binder_call(grok_agent, aethercore_app)
+allow grok_agent aethercore_app:service_manager find;
+
+# Notification and foreground service
+allow grok_agent system_server:service_manager find;
+allow grok_agent surfaceflinger:service_manager find;
+
+# Read-only access to necessary system properties (no writes unless justified)
+get_prop(grok_agent, system_prop)
+get_prop(grok_agent, product_prop)
+
+# Future: controlled access to GrokAdminSOS logging service (add when service is defined)
+# allow grok_agent grok_admin_service:service_manager find;
+
+# Network (only for explicit cloud routing after consent)
+allow grok_agent self:udp_socket create_socket_perms;
+allow grok_agent self:tcp_socket create_socket_perms;
+allow grok_agent node:udp_node recvfrom;
+allow grok_agent node:tcp_node recvfrom;
+allow grok_agent port:tcp_socket name_connect;
+
+# No direct camera, audio, location, or accessibility yet.
+# These will be added only after:
+#  - Isolated sandbox proven
+#  - Partnership verification at runtime
+#  - Explicit user @grok consent + audit log
+
+# File access - very restricted (own data + limited system files)
+allow grok_agent grok_agent_data_file:dir create_dir_perms;
+allow grok_agent grok_agent_data_file:file create_file_perms;
+
+# Audit everything critical
+auditallow grok_agent grok_agent_data_file:file { write append };
+
+# Neverallow examples (defense in depth)
+# neverallow grok_agent { camera_service audio_service }:service_manager find;
+# neverallow grok_agent self:process execmem;   # if hardened further

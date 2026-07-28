@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Stay4S Grok - Hardened Privileged Permissions
+  Privacy & Cybersecurity hardened version for active build integration
+
+  Principles:
+  - Least privilege
+  - Explicit user consent required for sensitive operations (@grok triggers only)
+  - All actions audited via GrokAdminSOS + Partnership verification
+  - No broad camera/mic/accessibility until consent + isolated sandbox is proven
+-->
+<permissions>
+    <privapp-permissions package="com.stay4s.grok">
+        <!-- Core persistent operation -->
+        <permission name="android.permission.FOREGROUND_SERVICE" />
+        <permission name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+        <!-- Controlled network (for explicit @grok cloud routing only) -->
+        <permission name="android.permission.INTERNET" />
+        <permission name="android.permission.ACCESS_NETWORK_STATE" />
+
+        <!-- Notification for agent status (user visible) -->
+        <permission name="android.permission.POST_NOTIFICATIONS" />
+
+        <!-- AetherCore AIDL binding -->
+        <permission name="com.stay4s.permission.USE_AETHERCORE" />
+
+        <!-- Voice interaction (user initiated) -->
+        <permission name="android.permission.BIND_VOICE_INTERACTION" />
+
+        <!-- Quick Settings tile (user convenience) -->
+        <permission name="android.permission.BIND_QUICK_SETTINGS_TILE" />
+
+        <!-- Future: only when Partnership + explicit consent confirmed -->
+        <!--
+        <permission name="android.permission.CAMERA" />
+        <permission name="android.permission.RECORD_AUDIO" />
+        <permission name="android.permission.ACCESS_FINE_LOCATION" />
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
+        -->
+    </privapp-permissions>
+</permissions>

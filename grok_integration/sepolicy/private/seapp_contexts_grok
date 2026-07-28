@@ -1,0 +1,2 @@
+# Grok Agent - run the :agent process in its own isolated domain
+user=system seinfo=platform isPrivApp=true name=com.stay4s.grok domain=grok_agent type=grok_agent_data_file levelFrom=all
