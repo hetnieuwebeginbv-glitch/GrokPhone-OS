@@ -51,7 +51,7 @@ jobs:
         run: |
           cd ${{ env.BUILD_DIR }}
           repo init -u https://github.com/LineageOS/android.git \
-            -b lineage-22.1 \
+            -b lineage-23.2 \
             --git-lfs
 
       - name: Copy local manifests
