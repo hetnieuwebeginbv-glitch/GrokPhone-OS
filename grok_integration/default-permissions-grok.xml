@@ -5,7 +5,7 @@
   Sensitive capabilities must be explicitly requested and approved via @grok + Partnership.
 -->
 <exceptions>
-    <exception package="com.xai.grok">
+    <exception package="com.stay4s.grok">
         <permission name="android.permission.POST_NOTIFICATIONS" fixed="false" />
     </exception>
 </exceptions>
