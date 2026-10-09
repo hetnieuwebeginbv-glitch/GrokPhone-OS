@@ -1,0 +1,5 @@
+# Grok Agent Core - Isolated domain labeling
+/(vendor|system/vendor)/bin/grok_agent_core_exec          u:object_r:grok_agent_exec:s0
+
+# Data directory for the agent (isolated)
+/data/vendor/grok_agent(/.*)?                              u:object_r:grok_agent_data_file:s0

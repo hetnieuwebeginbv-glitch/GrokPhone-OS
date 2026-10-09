@@ -1,0 +1,8 @@
+[submodule "packages/apps/Grok"]
+	path = packages/apps/Grok
+	url = https://github.com/hetnieuwebeginbv-glitch/android_packages_apps_Grok.git
+	branch = main
+[submodule "device/nothing/asteroids"]
+	path = device/nothing/asteroids
+	url = https://github.com/miesdevries/grokphone.git
+	branch = stay4s-integration

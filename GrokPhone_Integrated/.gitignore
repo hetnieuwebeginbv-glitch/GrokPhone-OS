@@ -1,0 +1,31 @@
+# Build output
+out/
+build/
+*.o
+*.class
+*.dex
+*.apk
+*.ap_
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+
+# Secrets / local config (never commit)
+local.properties
+secrets.*
+.env
+*.env
+*.keystore
+*.jks
+*.pem
+*.key
+*.p12
+
+# OS cruft
+.DS_Store
+Thumbs.db

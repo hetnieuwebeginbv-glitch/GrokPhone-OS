@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Stay4S Grok - Default Permissions (minimal)
+  Only non-sensitive permissions that are safe to grant by default.
+  Sensitive capabilities must be explicitly requested and approved via @grok + Partnership.
+-->
+<exceptions>
+    <exception package="com.stay4s.grok">
+        <permission name="android.permission.POST_NOTIFICATIONS" fixed="false" />
+    </exception>
+</exceptions>
