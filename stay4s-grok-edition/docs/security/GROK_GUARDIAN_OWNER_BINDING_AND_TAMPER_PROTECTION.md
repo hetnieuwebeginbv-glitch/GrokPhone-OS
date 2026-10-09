@@ -1,0 +1,1 @@
+Updated with full owner binding, impact auto-lock, owner re-identification, special theft/safety/privacy modes, and the Daily Guardian Agent that proactively searches for improvements and threats every day.

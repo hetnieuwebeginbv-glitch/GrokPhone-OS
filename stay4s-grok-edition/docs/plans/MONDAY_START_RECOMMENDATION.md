@@ -1,0 +1,1 @@
+Practical recommendation and step plan for starting the Grok Edition rebuild on Monday.

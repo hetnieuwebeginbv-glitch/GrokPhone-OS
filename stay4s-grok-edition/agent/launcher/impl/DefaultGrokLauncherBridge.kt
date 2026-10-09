@@ -1,0 +1,1 @@
+Reference implementation of the bridge between launcher and AI brain.

@@ -1,0 +1,20 @@
+# init.grok.rc
+# Early boot configuration for Stay4S GrokPhone
+# Starts the Grok agent as early as possible in the :agent process
+
+on post-fs-data
+    # Create directories for Grok
+    mkdir /data/grok 0770 system system
+    mkdir /data/grok/logs 0770 system system
+
+on boot
+    # Start Grok agent early
+    start grok_agent
+
+service grok_agent /system/bin/app_process /system/bin --nice-name=grok_agent com.xai.grok.GrokAgentCoreService
+    class main
+    user system
+    group system
+    capabilities BLOCK_SUSPEND
+    seclabel u:r:grok_agent:s0
+    onrestart restart grok_agent

@@ -1,0 +1,1 @@
+Full 4-day plan with parallel tracks while builds run long.

@@ -1,0 +1,1 @@
+Complete working Grok standard integration example for the current asteroids hardware.

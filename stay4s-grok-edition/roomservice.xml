@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Stay4S GrokPhone - roomservice for LineageOS 22.1 (Android 15) on asteroids -->
+
+  <!-- Device tree (GrokPhone overlay / configuration) -->
+  <project path="device/nothing/asteroids" name="miesdevries/Stay4s-grokrom" revision="main" />
+
+  <!-- Kernel (adjust branch if you have a custom kernel fork) -->
+  <!-- <project path="kernel/nothing/asteroids" name="LineageOS/android_kernel_nothing_sm7325" revision="lineage-22.1" /> -->
+
+  <!-- Vendor (you will usually extract blobs yourself) -->
+  <!-- <project path="vendor/nothing/asteroids" name="..." revision="..." /> -->
+
+  <!-- Example: If you want to include the full Grok app sources from another repo -->
+  <!-- <project path="packages/apps/Grok" name="miesdevries/Stay4s-grokrom" revision="main" /> -->
+</manifest>

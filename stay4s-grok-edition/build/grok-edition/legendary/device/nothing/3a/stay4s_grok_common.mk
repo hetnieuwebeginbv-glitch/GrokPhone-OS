@@ -1,0 +1,1 @@
+Clean, standards-compliant starter skeleton for the Nothing Phone 3a with Grok integration already applied.

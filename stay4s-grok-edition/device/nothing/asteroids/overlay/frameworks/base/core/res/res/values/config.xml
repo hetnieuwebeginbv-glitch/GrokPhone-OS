@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Make Grok the central assistant -->
+    <string name="config_defaultAssistant" translatable="false">com.xai.grok/com.xai.grok.GrokAgentCoreService</string>
+
+    <!-- Remove or deprioritize stock search -->
+    <string name="config_defaultBrowser" translatable="false">com.xai.grok</string>
+
+    <!-- Disable some LineageOS default behaviors we want to control via Grok -->
+    <bool name="config_enableAutoBrightness">false</bool>
+
+    <!-- Stronger control over network scoring (Grok can influence via Guardian) -->
+    <integer name="config_networkScoringProvisioningTimeoutMs">60000</integer>
+</resources>
