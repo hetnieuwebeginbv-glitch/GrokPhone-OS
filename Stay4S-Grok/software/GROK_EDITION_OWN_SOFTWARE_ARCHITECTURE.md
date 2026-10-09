@@ -1,0 +1,1 @@
+Core architecture for the proprietary Grok Edition software layer (launcher, boot, app distribution, system intelligence).

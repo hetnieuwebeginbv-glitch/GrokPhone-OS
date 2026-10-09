@@ -1,0 +1,1 @@
+ROM product definition for the Genesis limited batch.

@@ -1,0 +1,25 @@
+// Android.bp for the Grok app in the Stay4S Grok Edition
+//
+// This builds the full Parallel Grok AI Brain as a privileged platform-signed app.
+
+android_app {
+    name: "Grok",
+    srcs: [
+        "src/**/*.kt",
+    ],
+    resource_dirs: ["res"],
+    platform_apis: true,
+    certificate: "platform",
+    privileged: true,
+    optimize: {
+        enabled: true,
+    },
+
+    // Run the core agent in a separate process for isolation
+    manifest: "AndroidManifest.xml",
+
+    // Dependencies for the Parallel Brain
+    static_libs: [
+        // Add any local SLM or crypto libs here later
+    ],
+}

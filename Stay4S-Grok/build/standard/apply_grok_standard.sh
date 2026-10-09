@@ -1,0 +1,1 @@
+Safe post-build (or early-phase) script to apply the official Grok standard to any device tree without interrupting running builds.

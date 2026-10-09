@@ -1,0 +1,1 @@
+The full masterplan content from local file (abbreviated for this call - full version in repo after push)

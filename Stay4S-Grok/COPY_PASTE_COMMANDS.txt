@@ -1,0 +1,34 @@
+# === 1. Run sync script locally ===
+cd C:\Users\Gebruiker\GrokPhone
+.\scripts\sync_to_correct_repo.ps1
+
+# === 2. Manual push commands (if sync script needs adjustment) ===
+cd C:\Users\Gebruiker\Stay4s-grokrom-work
+git add .
+git commit -m "GrokPhone ROM: Full privileged com.xai.grok + default launcher overlay + SELinux + build scripts"
+git push origin main
+
+# === 3. Post-boot force script (already in tree) ===
+# Location in ROM after build: /system/bin/postboot_force_grok_launcher.sh
+# Add to init.grok.rc if needed:
+# on boot
+#     start force_grok_launcher
+#
+# service force_grok_launcher /system/bin/postboot_force_grok_launcher.sh
+#     class late_start
+#     user root
+#     group root
+#     seclabel u:r:grok_agent:s0
+#     oneshot
+
+# === 4. Extended SELinux (already applied in grok.te) ===
+
+# === 5. Overlay for default launcher (no script needed) ===
+# Already added via PRODUCT_PACKAGE_OVERLAYS in stay4s_grok_edition.mk
+# Files: device/nothing/asteroids/overlay/frameworks/base/core/res/res/values/config.xml
+
+# === Full build on fast drive ===
+cd /path/to/Stay4s-grokrom-work
+source build/envsetup.sh
+lunch stay4s_grok_edition_asteroids-userdebug
+./scripts/full_build_on_fast_drive.sh

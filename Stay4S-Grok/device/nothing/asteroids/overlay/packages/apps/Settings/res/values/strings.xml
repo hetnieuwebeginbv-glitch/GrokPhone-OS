@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Full rebranding of the Settings app toward Grok identity -->
+    <string name="app_name">Grok</string>
+    <string name="settings_label">Grok</string>
+
+    <!-- Replace Android/Lineage categories with Grok-native ones -->
+    <string name="header_category_system">System &amp; Intelligence</string>
+    <string name="header_category_personal">Personal Covenant</string>
+    <string name="header_category_network">Network &amp; Mesh</string>
+    <string name="header_category_security">Guardian &amp; Protection</string>
+
+    <string name="about_settings">About This GrokPhone</string>
+    <string name="about_settings_summary">Your sovereign intelligence device</string>
+
+    <!-- Example of Guardian integration point -->
+    <string name="guardian_settings">Daily Guardian</string>
+    <string name="guardian_settings_summary">Your always-on AI protector</string>
+</resources>

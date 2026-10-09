@@ -1,0 +1,50 @@
+# Stay4S GrokPhone - LineageOS / AOSP .gitignore
+
+# Build outputs
+out/
+*.img
+*.zip
+*.tar
+*.tar.gz
+
+# ccache
+.ccache/
+ccache/
+
+# Kernel build artifacts
+kernel/nothing/asteroids/out/
+
+# Vendor blobs (usually large and not committed)
+vendor/nothing/asteroids/proprietary/
+
+# IDE and editor
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# Log files from builds
+*.log
+build_*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Android specific
+*.dex
+*.apk
+*.ap_
+*.class
+
+# Gradle (if any local)
+.gradle/
+local.properties
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Node (if any scripts)
+node_modules/

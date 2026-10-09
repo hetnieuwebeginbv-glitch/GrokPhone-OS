@@ -1,0 +1,1 @@
+Ranked hardware recommendations for B2B deployments with rationale and long-term strategy.

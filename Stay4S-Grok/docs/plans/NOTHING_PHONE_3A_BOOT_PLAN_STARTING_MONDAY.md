@@ -1,0 +1,1 @@
+Practical Monday-start plan for booting the Nothing Phone 3a, prioritizing a minimal working image first before full Grok integration.

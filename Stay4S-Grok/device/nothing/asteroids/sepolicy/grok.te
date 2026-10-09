@@ -1,0 +1,83 @@
+﻿type grok_app, domain;
+app_domain(grok_app)
+net_domain(grok_app)
+
+# Grok data directory type
+type grok_data_file, file_type, data_file_type;
+
+# Grok properties
+type grok_prop, property_type;
+
+# Telecom & Radio
+allow grok_app telephony_service:service_manager find;
+allow grok_app radio_service:service_manager find;
+allow grok_app phone_state_listener:service_manager find;
+allow grok_app qti_radio_service:service_manager find;
+
+# System services
+allow grok_app system_server:service_manager find;
+allow grok_app activity_service:service_manager find;
+allow grok_app package_service:service_manager find;
+allow grok_app power_service:service_manager find;
+
+# Foreground agent process
+allow grok_app grok_app:process { fork sigchld sigkill sigstop };
+allow grok_app grok_app:fd use;
+
+# Boot receivers
+allow grok_app init:process { sigchld sigkill sigstop };
+
+# Quick Settings + Notification
+allow grok_app status_bar_service:service_manager find;
+allow grok_app notification_service:service_manager find;
+
+# Network & logging
+allow grok_app netdomain:netlink_route_socket { bind create read write };
+allow grok_app logd:unix_stream_socket connectto;
+
+# Agent process specific (for :agent)
+type grok_agent, domain;
+app_domain(grok_agent);
+net_domain(grok_agent);
+
+# Allow agent to access system services it needs
+allow grok_agent system_server:service_manager find;
+allow grok_agent activity_service:service_manager find;
+allow grok_agent package_service:service_manager find;
+allow grok_agent accessibility_service:service_manager find;
+allow grok_agent telecom_service:service_manager find;
+allow grok_agent notification_service:service_manager find;
+
+# File access for Grok data
+allow grok_agent grok_data_file:dir { create_dir_perms };
+allow grok_agent grok_data_file:file { create_file_perms };
+
+# Boot and persistent execution
+allow grok_agent init:unix_stream_socket connectto;
+allow grok_agent self:capability { setuid setgid };
+
+# Allow reading/writing Grok properties
+allow grok_agent grok_prop:property_service set;
+
+# Launcher (Grok as default home)
+allow grok_agent activity_service:service_manager find;
+allow grok_agent window_service:service_manager find;
+
+# Vault / secure storage access (future)
+# allow grok_agent keystore_service:service_manager find;
+
+# Meshmatic / LoRa (future hardware access)
+# allow grok_agent serial_device:chr_file rw_file_perms;
+
+# Logging
+allow grok_agent logd:unix_stream_socket connectto;
+
+# Launcher force script execution
+allow grok_agent shell_exec:file rx_file_perms;
+allow grok_agent system_file:file execute_no_trans;
+allow grok_agent package_service:service_manager find;
+allow grok_agent activity_service:service_manager find;
+
+# Allow setting default launcher
+allow grok_agent settings_service:service_manager find;
+allow grok_agent secure_property:property_service set;

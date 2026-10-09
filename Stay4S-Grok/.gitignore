@@ -1,0 +1,73 @@
+# Stay4S GrokPhone - LineageOS / AOSP .gitignore
+
+# Build outputs (very important for AOSP/Lineage)
+out/
+*.img
+*.zip
+*.tar
+*.tar.gz
+*.tar.xz
+
+# ccache
+.ccache/
+ccache/
+
+# Kernel build artifacts
+kernel/*/out/
+
+# Vendor blobs (large and usually handled separately)
+vendor/*/*/proprietary/
+vendor/*/*/*-vendor.mk
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Build logs
+*.log
+build_*.log
+*.err.log
+*.out.log
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Android specific
+*.dex
+*.apk
+*.ap_
+*.class
+*.o
+*.so
+
+# Gradle / local properties
+.gradle/
+local.properties
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Node (if any tooling)
+node_modules/
+
+# Sensitive / machine specific
+*.pem
+*.key
+keystore*
+signing/
+
+# Repo tool
+.repo/
+
+# Large binary directories that shouldn't be in the ROM config repo
+kernel/nothing/asteroids/prebuilts/
+vendor/nothing/asteroids/proprietary/

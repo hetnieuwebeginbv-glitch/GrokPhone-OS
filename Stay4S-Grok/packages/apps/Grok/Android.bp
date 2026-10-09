@@ -1,0 +1,17 @@
+﻿android_app {
+    name: "Grok",
+    srcs: ["src/**/*.java", "src/**/*.kt"],
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+    certificate: "platform",
+    privileged: true,
+    product_specific: true,
+    sdk_version: "current",
+
+    # Required for :agent process and deep system integration
+    platform_apis: true,
+    enforce_default_uses_libraries: false,
+
+    # Static libraries if needed for future advanced features
+    # static_libs: ["androidx.preference_preference"],
+}

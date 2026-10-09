@@ -1,0 +1,4 @@
+# Grok Agent SELinux file contexts
+
+/data/grok(/.*)?          u:object_r:grok_data_file:s0
+/system/bin/grok_agent    u:object_r:grok_agent_exec:s0

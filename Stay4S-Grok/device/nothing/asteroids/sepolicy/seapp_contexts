@@ -1,0 +1,7 @@
+# seapp_contexts for Grok Edition
+
+# Grok privileged app
+user=system seinfo=platform name=com.xai.grok domain=grok_agent type=app_data_file levelFrom=all
+
+# Grok agent process
+user=system seinfo=platform name=com.xai.grok:agent domain=grok_agent type=app_data_file levelFrom=all

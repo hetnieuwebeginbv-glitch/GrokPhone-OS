@@ -1,0 +1,1 @@
+The full official standard integration guide (see local file for complete version)

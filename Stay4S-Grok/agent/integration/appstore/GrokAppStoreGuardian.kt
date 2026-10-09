@@ -1,0 +1,1 @@
+Stub for Grok-controlled software distribution and pre-install analysis.
