@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stay4S Guardian</string>
+    <string name="app_description">Ai Manus Phone — Stay4Safe Ai</string>
+    <string name="accessibility_service_label">Stay4S Guardian scam-detectie</string>
+
+    <!-- Notificatie kanalen -->
+    <string name="channel_guardian_name">Guardian AI</string>
+    <string name="channel_guardian_desc">Stay4S Guardian AI beschermingsstatus</string>
+    <string name="channel_scam_name">Scam Defender</string>
+    <string name="channel_scam_desc">Waarschuwingen voor scam-oproepen en phishing</string>
+    <string name="channel_emergency_name">Noodprotocol</string>
+    <string name="channel_emergency_desc">Noodgevallen en valdetectie meldingen</string>
+    <string name="channel_privacy_name">Privacy Monitor</string>
+    <string name="channel_privacy_desc">Meldingen over sensor-toegang door apps</string>
+
+    <!-- Guardian status -->
+    <string name="status_active">Beschermd</string>
+    <string name="status_monitoring">Monitoren</string>
+    <string name="status_alert">Alert</string>
+    <string name="status_emergency">Noodgeval</string>
+    <string name="status_paused">Gepauzeerd</string>
+
+    <!-- Beschermingslagen -->
+    <string name="layer_safety">Safety</string>
+    <string name="layer_security">Security</string>
+    <string name="layer_privacy">Privacy</string>
+    <string name="layer_support">Support</string>
+
+    <!-- Fastbutton -->
+    <string name="fastbutton_label">Fastbutton</string>
+    <string name="fastbutton_hint">Houd 3 seconden ingedrukt voor noodoproep</string>
+
+    <!-- Noodprotocol -->
+    <string name="emergency_title">Noodprotocol Actief</string>
+    <string name="emergency_message">Val gedetecteerd. Reageer binnen %d seconden of 112 wordt gebeld.</string>
+    <string name="emergency_ok">Ik ben OK</string>
+    <string name="emergency_call">Bel 112 Nu</string>
+
+    <!-- Scam Defender -->
+    <string name="scam_warning_title">Mogelijke Scam-oproep</string>
+    <string name="scam_warning_message">Dit nummer toont kenmerken van een scam-oproep. Wees voorzichtig.</string>
+    <string name="scam_blocked_title">Scam-oproep Geblokkeerd</string>
+    <string name="scam_accept">Toch Opnemen</string>
+    <string name="scam_decline">Weigeren</string>
+
+    <!-- Privacy Monitor -->
+    <string name="privacy_camera_alert">%s gebruikt de camera</string>
+    <string name="privacy_mic_alert">%s gebruikt de microfoon</string>
+    <string name="privacy_location_alert">%s heeft toegang tot je locatie</string>
+
+    <!-- Onveranderlijke regels (weergave) -->
+    <string name="rule_1">R1: 112 is altijd bereikbaar</string>
+    <string name="rule_2">R2: Geen stiekeme data-overdracht</string>
+    <string name="rule_3">R3: Lokale verwerking eerst</string>
+    <string name="rule_4">R4: Altijd uitleg bij ingrijpen</string>
+    <string name="rule_5">R5: Jij hebt altijd het laatste woord</string>
+    <string name="rule_6">R6: Nooit manipulatie</string>
+
+    <!-- Navigatie -->
+    <string name="nav_home">Home</string>
+    <string name="nav_audit">Activiteit</string>
+    <string name="nav_contacts">Contacten</string>
+    <string name="nav_settings">Instellingen</string>
+</resources>

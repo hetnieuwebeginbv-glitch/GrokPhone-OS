@@ -1,0 +1,3 @@
+-keep class ai.stay4safe.launcher.** { *; }
+-keep class androidx.compose.** { *; }
+-dontwarn androidx.compose.**

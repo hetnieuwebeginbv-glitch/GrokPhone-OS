@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Stay4Safe Ai — Cybernetic Noir Palette -->
+    <color name="guardian_black">#0A0A0F</color>
+    <color name="guardian_dark">#12121A</color>
+    <color name="guardian_card">#1A1A26</color>
+    <color name="guardian_teal">#00D4B4</color>
+    <color name="guardian_teal_dim">#007A68</color>
+    <color name="guardian_red">#FF3B3B</color>
+    <color name="guardian_amber">#FFB800</color>
+    <color name="guardian_green">#00FF88</color>
+    <color name="guardian_text">#E8E8F0</color>
+    <color name="guardian_text_dim">#8888AA</color>
+
+    <!-- Systeem kleuren -->
+    <color name="notification_color">#00D4B4</color>
+    <color name="ic_launcher_background">#0A0A0F</color>
+</resources>

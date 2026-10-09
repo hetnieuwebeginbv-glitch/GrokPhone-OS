@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manus Suite</string>
+    <string name="device_admin_label">Manus Managed OS</string>
+    <string name="device_admin_description">Beheer Ai Manus Phone provisioning, apps en policies op managed toestellen.</string>
+</resources>

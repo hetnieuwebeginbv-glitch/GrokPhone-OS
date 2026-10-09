@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manus AI Glyph</string>
+    <string name="channel_glyph_name">Manus AI Glyph</string>
+    <string name="channel_glyph_desc">AI status, Guardian alerts en Manus OS signalen</string>
+    <string name="notification_title">Manus AI Glyph actief</string>
+    <string name="notification_idle">AI status service luistert naar Manus signalen</string>
+</resources>

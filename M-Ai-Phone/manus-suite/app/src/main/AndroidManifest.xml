@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ManusSuite">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SetupActivity" android:exported="true" />
+        <activity android:name=".AdminRoomActivity" android:exported="true" />
+        <activity android:name=".BossAdminActivity" android:exported="true" />
+        <activity android:name=".BossDashboardActivity" android:exported="true" />
+        <activity android:name=".BossCommandQueueActivity" android:exported="true" />
+        <activity android:name=".BossAgentsActivity" android:exported="true" />
+        <activity android:name=".BossPolicyActivity" android:exported="true" />
+        <activity android:name=".BossAuditActivity" android:exported="true" />
+        <activity android:name=".DeviceFlashActivity" android:exported="true" />
+        <activity android:name=".BackendConsoleActivity" android:exported="true" />
+        <activity android:name=".StoreActivity" android:exported="true" />
+        <activity android:name=".ChatActivity" android:exported="true" />
+        <activity android:name=".BrowserActivity" android:exported="true" />
+        <activity android:name=".MessengerActivity" android:exported="true" />
+        <activity android:name=".PayActivity" android:exported="true" />
+
+        <receiver
+            android:name=".ManusDeviceAdminReceiver"
+            android:description="@string/device_admin_description"
+            android:exported="true"
+            android:label="@string/device_admin_label"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_receiver" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
