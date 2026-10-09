@@ -1,0 +1,60 @@
+# Android ROM Build Artifacts
+out/
+*.apk
+*.ota
+*.img
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Build Directories
+.repo/
+build/
+vendor/
+system/
+product/
+system_ext/
+
+# LineageOS/AOSP Specific
+device/
+kernel/
+prebuilts/
+bionic/
+
+# Cache and Temp Files
+.ccache/
+*.o
+*.a
+*.so
+*.pyc
+__pycache__/
+*.swp
+*.swo
+*~
+.DS_Store
+.cache/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
+build.log
+error.log
+
+# Environment
+.env
+local.properties
+
+# Git Submodules
+.gitmodules
+
+# Misc
+*.orig
+*.rej
+.gradle/
+gradlew

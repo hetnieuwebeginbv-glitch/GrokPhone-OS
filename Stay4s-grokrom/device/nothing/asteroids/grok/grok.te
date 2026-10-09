@@ -1,0 +1,244 @@
+#
+# SELinux Policy for Grok System App
+# Copyright (C) 2026 Stay4S Development
+#
+# This policy defines the SELinux rules for the Grok privileged system app
+# running on the Nothing Phone (3a) with the asteroids device codename.
+# 
+# The Grok app operates as a platform-signed privileged system app with
+# an :agent service that provides deep system integration capabilities.
+#
+
+# Define the Grok domain type
+type grok_app, domain, coredomain;
+type grok_app_exec, exec_type, file_type;
+
+# Grok agent service domain
+type grok_agent, domain, coredomain;
+type grok_agent_exec, exec_type, file_type;
+
+# Grok data types
+type grok_data_file, file_type, data_file_type;
+type grok_cache_file, file_type, data_file_type;
+
+# ============ Domain Transitions ============
+
+# Allow system to transition to grok_app domain
+allow init grok_app_exec:file execute_no_trans;
+allow init grok_app:process transition;
+
+# Allow grok_app to transition to grok_agent
+allow grok_app grok_agent_exec:file execute_no_trans;
+allow grok_app grok_agent:process transition;
+
+# ============ File System Access ============
+
+# Grok data directory access
+allow grok_app grok_data_file:dir { create_dir_perms read write };
+allow grok_app grok_data_file:file { create_file_perms read write };
+allow grok_agent grok_data_file:dir { read open search };
+allow grok_agent grok_data_file:file { read open write };
+
+# Cache directory access
+allow grok_app cache_file:dir { create_dir_perms read write };
+allow grok_app cache_file:file { create_file_perms read write };
+allow grok_agent cache_file:dir { read open search };
+allow grok_agent cache_file:file { read open write };
+
+# System file access
+allow grok_app system_data_file:dir { read open search };
+allow grok_app system_file:dir { read open search };
+allow grok_agent system_data_file:dir { read open search };
+allow grok_agent system_file:dir { read open search };
+
+# Proc filesystem access
+allow grok_app proc_vmstat:file { read open };
+allow grok_app proc_meminfo:file { read open };
+allow grok_agent proc_vmstat:file { read open };
+allow grok_agent proc_meminfo:file { read open };
+
+# ============ Socket and IPC ============
+
+# Abstract socket access for system services
+allow grok_app socket_device:sock_file { read write };
+allow grok_agent socket_device:sock_file { read write };
+
+# Binder access for service communication
+allow grok_app servicemanager:service_manager { add find };
+allow grok_app hwservicemanager:hwservice_manager { find };
+allow grok_agent servicemanager:service_manager find;
+allow grok_agent hwservicemanager:hwservice_manager find;
+
+# Unix domain sockets
+allow grok_app grok_app:unix_stream_socket { bind listen accept connect read write };
+allow grok_agent grok_app:unix_stream_socket { bind listen accept connect read write };
+
+# ============ Telephony & Modem ============
+
+# Telephony service access
+allow grok_app telephony_service:service_manager find;
+allow grok_agent telephony_service:service_manager find;
+
+# Modem/Baseband access
+allow grok_app ril_device:chr_file { read write open ioctl };
+allow grok_agent ril_device:chr_file { read write open ioctl };
+
+# Radio interface layer
+allow grok_app radio_data_file:dir { read write open search };
+allow grok_app radio_data_file:file { read write open };
+allow grok_agent radio_data_file:dir { read write open search };
+allow grok_agent radio_data_file:file { read write open };
+
+# ============ Location & GPS ============
+
+# GPS/GNSS access
+allow grok_app gps_device:chr_file { read write open };
+allow grok_agent gps_device:chr_file { read write open };
+
+# Location service
+allow grok_app location_service:service_manager find;
+allow grok_agent location_service:service_manager find;
+
+# ============ Camera & Audio ============
+
+# Camera device
+allow grok_app camera_device:chr_file { read write open ioctl };
+allow grok_agent camera_device:chr_file { read write open ioctl };
+
+# Audio devices
+allow grok_app audio_device:chr_file { read write open ioctl };
+allow grok_agent audio_device:chr_file { read write open ioctl };
+
+# Media service
+allow grok_app mediadrmserver:service_manager find;
+allow grok_agent mediadrmserver:service_manager find;
+
+# ============ Sensors ============
+
+# Sensor device access
+allow grok_app sensors_device:chr_file { read write open ioctl };
+allow grok_agent sensors_device:chr_file { read write open ioctl };
+
+# Sensor HAL service
+allow grok_app sensorsservice:service_manager find;
+allow grok_agent sensorsservice:service_manager find;
+
+# ============ System Services ============
+
+# Power management
+allow grok_app power_service:service_manager find;
+allow grok_agent power_service:service_manager find;
+allow grok_app kernel:system { syslog_read syslog_mod };
+allow grok_agent kernel:system { syslog_read syslog_mod };
+
+# Window manager
+allow grok_app window_service:service_manager find;
+allow grok_agent window_service:service_manager find;
+
+# Activity manager
+allow grok_app activity_service:service_manager find;
+allow grok_agent activity_service:service_manager find;
+allow grok_app activity_service:activity_manager { get_task get_foreground_user_id };
+
+# Package manager
+allow grok_app package_service:service_manager find;
+allow grok_agent package_service:service_manager find;
+
+# App ops service
+allow grok_app appops_service:service_manager find;
+allow grok_agent appops_service:service_manager find;
+
+# Settings provider
+allow grok_app settings_service:service_manager find;
+allow grok_agent settings_service:service_manager find;
+
+# Storage manager
+allow grok_app storage_service:service_manager find;
+allow grok_agent storage_service:service_manager find;
+
+# ============ Networking ============
+
+# Network access
+allow grok_app self:socket { create bind listen connect read write ioctl };
+allow grok_agent self:socket { create bind listen connect read write ioctl };
+
+# Netlink sockets
+allow grok_app self:netlink_route_socket { create bind nlmsg_read };
+allow grok_agent self:netlink_route_socket { create bind nlmsg_read };
+
+# Network configuration
+allow grok_app net_data_file:dir { read write open search };
+allow grok_app net_data_file:file { read write open };
+allow grok_agent net_data_file:dir { read write open search };
+allow grok_agent net_data_file:file { read write open };
+
+# ============ Notification System ============
+
+# Notification service
+allow grok_app notification_service:service_manager find;
+allow grok_agent notification_service:service_manager find;
+
+# ============ Process Management ============
+
+# Process signal access
+allow grok_app domain:process { signal signull sigkill };
+allow grok_agent domain:process { signal signull sigkill };
+
+# Process information
+allow grok_app domain:dir { read open search };
+allow grok_app domain:file { read open };
+allow grok_agent domain:dir { read open search };
+allow grok_agent domain:file { read open };
+
+# ============ Device Properties ============
+
+# Read/write system properties
+allow grok_app property_socket:sock_file write;
+allow grok_app init:unix_stream_socket connectto;
+allow grok_agent property_socket:sock_file write;
+allow grok_agent init:unix_stream_socket connectto;
+
+# ============ Logging ============
+
+# System logging
+allow grok_app kmem_device:chr_file { read open };
+allow grok_agent kmem_device:chr_file { read open };
+
+# Logd access
+allow grok_app logd:unix_stream_socket connectto;
+allow grok_agent logd:unix_stream_socket connectto;
+
+# ============ Development/Debugging (userdebug builds) ============
+
+# Allow debugging capabilities on userdebug builds
+allow grok_app debugfs:dir { read open search };
+allow grok_app debugfs:file { read open };
+allow grok_agent debugfs:dir { read open search };
+allow grok_agent debugfs:file { read open };
+
+# ============ Agent Service Specific ============
+
+# Allow the agent service to run as a foreground service
+allow grok_agent init:unix_stream_socket connectto;
+
+# Persistent service handling
+allow grok_app ctl_start_prop:property_service set;
+allow grok_app ctl_stop_prop:property_service set;
+
+# ============ Neverallow Overrides ============
+
+# These rules override default neverallow directives to enable
+# Grok's system integration. Use with caution in production.
+
+# Allow writing to system partitions (for agent updates)
+allow grok_app system_file:file { write setattr };
+
+# Allow capability usage
+allow grok_app grok_app:capability { net_admin sys_admin sys_resource sys_time };
+allow grok_agent grok_agent:capability { net_admin sys_admin sys_resource };
+
+# ============ Audit Logging ============
+
+# Log allowed operations (optional - helps with debugging)
+auditallow grok_app ril_device:chr_file ioctl;
+auditallow grok_agent ril_device:chr_file ioctl;
