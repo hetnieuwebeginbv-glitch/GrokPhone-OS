@@ -2,6 +2,23 @@
 
 **Meta-repo** met local manifests, build scripts, en CI/CD configuratie voor het bouwen van Stay4OS op Nothing Phone 3a (asteroids).
 
+## Samengevoegde repositories (2026-10-09)
+
+Dit was 1 van 9 overlappende "Grok phone"-concept-repos. Ze zijn hier samengevoegd
+tot Ã©Ã©n repository, elk met volledige git-geschiedenis behouden als submap:
+
+- `Stay4Grok/`
+- `stay4s-grok-edition/`
+- `Stay4S-Grok/`
+- `Stay4s-grokrom/`
+- `GrokPhone_Integrated/`
+- `M-Ai-Phone/`
+- `stay4safe-ai/`
+- `Stay4S/`
+
+De 8 originele repo's zijn gearchiveerd (read-only, niet verwijderd). Deze repo
+(`GrokPhone-OS`) is nu de enige actieve/canonieke Grok-phone-repo.
+
 ## Snelstart
 
 ```bash
@@ -28,22 +45,22 @@ mka bacon -j$(nproc)
 
 | Repo | Doel |
 |------|------|
-| GrokPhone-OS | Meta-repo (hier) — local manifests, scripts, CI/CD |
+| GrokPhone-OS | Meta-repo (hier) ï¿½ local manifests, scripts, CI/CD |
 | android_device_nothing_asteroids | Device tree (Stay4S fork, lineage-23.2) |
 | android_kernel_nothing_sm7635 | Kernel source (Stay4S fork, lineage-23.2) |
 | android_vendor_nothing_asteroids | Vendor blobs (PRIVATE) |
 | android_packages_apps_AetherCore | AetherCore AI orchestrator service |
-| android_packages_apps_Grok | Grok Agent Core — privileged AI agent |
+| android_packages_apps_Grok | Grok Agent Core ï¿½ privileged AI agent |
 
 ## CI/CD
 
-- build.yml — Nightly/build-on-push
-- release.yml — Manuele release naar canary/beta/stable
-- security-scan.yml — SELinux/AVB/security audit (TODO)
+- build.yml ï¿½ Nightly/build-on-push
+- release.yml ï¿½ Manuele release naar canary/beta/stable
+- security-scan.yml ï¿½ SELinux/AVB/security audit (TODO)
 
 ## Branch
 
-**lineage-23.2** (ADR-0011A, H23) — geautoriseerd 2026-07-28.
+**lineage-23.2** (ADR-0011A, H23) ï¿½ geautoriseerd 2026-07-28.
 
 ## Gerelateerd
 
